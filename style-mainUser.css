@@ -1,0 +1,99 @@
+h1{
+    display: block;
+    color: red;
+    position: relative;
+    padding-left: 60%;
+    padding-bottom: 8%;
+}
+
+/*body{
+    background:url("https://pixabay.com/static/uploads/photo/2015/07/02/10/27/bar-828768_960_720.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}*/
+
+#menu{
+    float:left;
+    position: fixed;
+    background-color: lightgray;
+    opacity: 0.8;
+}
+
+#menu ul li a{
+    display: block;
+    color: black;
+    padding: 10px 0 10px 20px;
+    text-decoration: none;
+}
+
+#menu ul li a:hover{
+    -moz-transition-duration: 0.5s;
+    -webkit-transition-duration: 0.5s;
+    background-color: #555;
+    color: white;
+    padding: 10px 0 10px 20px;
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+}
+
+#menuWrap{
+    padding-top:  300px;
+}
+
+
+
+
+/***********************LIST OF BEERS**********************************/
+
+#priceId{
+
+}
+
+.beerItem{
+    padding-top: 2px;
+    border: double green;
+    background-color: antiquewhite;
+}
+
+#beerListId{
+    float: left;
+    margin-left:42%;
+}
+
+
+.beerItem li a{
+    display: block;
+    color: black;
+    padding: 10px 0 10px 20px;
+    text-decoration: none;
+}
+
+
+.beerItem li a:hover{
+    -moz-transition-duration: 0.5s;
+    -webkit-transition-duration: 0.5s;
+    background-color: #555;
+    color: white;
+}
+
+/*.active{
+    background-color: #FF9900;
+    color: white;
+}*/
+/*****************************SHOPPING CART*****************************/
+
+#shoppingCart{
+    margin-right: 7%;
+    width: 400px;
+    height: 500px;
+    float:right;
+    border: solid #aaaaaa;
+}
