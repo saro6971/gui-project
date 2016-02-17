@@ -13,7 +13,7 @@ h1 {
 }
 
 #logout {
-    border-style: groove;
+    /*border-style: groove;*/
     position:absolute;
     right:10%;
     top:5%;
@@ -24,11 +24,6 @@ h1 {
     align:left;
 }
 
-#logoutText {
-    /*padding: -5px 10px -5px 10px;*/
-
-}
-
 #wrapper {
     height:90%;
     width: 70%;
@@ -37,7 +32,7 @@ h1 {
 }
 
 #singleBoxOne {
-    background: red;
+    background: darkred;
     position: center;
     text-align: center;
     height:15%;
@@ -45,7 +40,7 @@ h1 {
 }
 
 #singleBoxTwo {
-    background: red;
+    background: darkred;
     position: center;
     text-align: center;
     height:15%;
@@ -61,18 +56,32 @@ h1 {
 }
 
 #fourBoxMini {
-    background: lightgreen;
+    background: lightgrey;
     width: 49%;
     height:49%;
     float:left;
     border-style: groove;
 }
 
+
+#fourBoxMini :hover {
+    background-color: #555;
+    color: white;
+}
+
+
 #textAlign {
     position: relative;
+    color: darkgrey;
     top: 35%;
     left: 40%;
-    color: darkgrey;
+
+    /*
+    text-align: center;
+    vertical-align: middle;
+    height: 100%;
+    */
+
 
 }
 
