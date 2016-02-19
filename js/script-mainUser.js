@@ -27,13 +27,14 @@ function allowDrop(ev) {
  * save the index of the element into index
  *
  * */
+
 var elements = [];
 function drag(element, ev) {
     var index = elements.indexOf(element);
     if(index == -1){
         // if not already in the array then we add it
         elements.push(element);
-        index = elements.length -1;
+        index = elements.length-1;
     }
     ev.dataTransfer.setData("index", index);
     console.log(index);
@@ -50,11 +51,14 @@ function drag(element, ev) {
 function drop(target, ev) {
     ev.preventDefault();
     var element = elements[event.dataTransfer.getData('index')];
-    // FIXA HÄR
-    var numb = $(".beerItem").text();
-    var pos = numb.indexOf("Price");
     //var pos = element.indexOf("Price")
-    console.log(pos);
+    //console.log($(element).attr('id'));
+    var id = $(element).attr('id');
+    var price = $('#'+id+".beerItem a").html();
+    var place = price.indexOf("Price: ");
+    console.log(price);
+    console.log(place);
+    console.log(id);
     target.appendChild(element);
     /*var data = ev.dataTransfer.getData("text");
      console.log(data);
@@ -62,11 +66,16 @@ function drop(target, ev) {
      */
 }
 
+function addCart(id, price, quantity){
+    //if id in shopping cart
+    if(jQuery.inArray(id,shoppingCartList) !== -1){
+        // If id exists, +1 on number of beers, -1 on quantity, att price to total.
 
-
-
-
-
+    }
+    else{
+        // if id not in array, add new beer, +price on total, -1 quantity, number of beers = 1
+    }
+}
 
 /*
 * xmlhttprequest is an api to transfer any data from and to clint/server
@@ -86,17 +95,18 @@ function loadItems() {
             var beerList = ("<div ><ul id='beerListId'>");
             for (i=0; i < beers.length; i++){
                 if (beers[i]["namn"] != ""){
-                    beerList += ("<div class='beerItem' draggable='true' ondragstart='drag(this,event)' ><a >" + beers[i]["namn"]  + " Price: " + beers[i]["pub_price"] + " £ </a></div>" );
+                    beerList += ("<li id ="+ beers[i]["beer_id" ] + " class='beerItem' draggable='true' ondragstart='drag(this,event)' >"+ beers[i]["namn"] +
+                    "<a class='priceClass'>"   + " Price: " + beers[i]["pub_price"] + " £ </a></li>" );
                 }
             }
             beerList += ("</ul></div>")
             document.getElementById("beer").innerHTML = beerList;
         }
     };
-
     xhttp.send();
 }
-
+//keeping track of shopping
+var shoppingCartList = [];
 loadItems();
 
 /*});
