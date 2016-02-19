@@ -24,14 +24,47 @@ h1 {
     align:left;
 }
 
-#wrapper {
+#notificationText {
+    overflow: auto
+
+}
+
+.notificationMenu {
+    overflow-y: scroll;
+}
+
+#notificationMenu ul li a{
+    display: block;
+    color: black;
+    padding: 10px 0 10px 20px;
+    text-decoration: none;
+}
+
+ul {
+
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
     height:90%;
     width: 70%;
     padding-left: 15%;
     padding-right: 15%;
 }
 
-#singleBoxOne {
+.singleBoxOne {
+    display:block;
+    background: darkred;
+    position: center;
+    height:15%;
+    border-style: groove;
+
+
+}
+
+.singleBoxTwo {
     background: darkred;
     position: center;
     text-align: center;
@@ -39,15 +72,7 @@ h1 {
     border-style: groove;
 }
 
-#singleBoxTwo {
-    background: darkred;
-    position: center;
-    text-align: center;
-    height:15%;
-    border-style: groove;
-}
-
-#fourBox {
+.fourBox {
     padding-top: 10%;
     padding-bottom: 10%;
     color: darkred;
@@ -55,7 +80,7 @@ h1 {
     overflow: hidden;
 }
 
-#fourBoxMini {
+.fourBoxMini {
     background: lightgrey;
     width: 49%;
     height:49%;
@@ -63,29 +88,21 @@ h1 {
     border-style: groove;
 }
 
-
-#fourBoxMini :hover {
-    background-color: #555;
-    color: white;
-}
-
-
-#textAlign {
+.textAlign {
     position: relative;
     color: darkgrey;
     top: 35%;
     left: 40%;
+    width: 15%;
 
     /*
     text-align: center;
     vertical-align: middle;
     height: 100%;
     */
-
-
 }
 
-#textAlignRuta{
+.textAlignRuta{
     position: relative;
     top: 35%;
     left: 0%;
@@ -94,4 +111,22 @@ h1 {
 }
 
 
+#startBeer {
 
+
+}
+
+#startInfo {
+
+
+}
+
+#startCustomer {
+
+
+}
+
+#startTable {
+
+
+}
