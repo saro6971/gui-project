@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../css/style-bartender.css">
+    <script src="../js/script-bartender.js"></script>
+    <script src="../js/jquery-1.12.0.js"></script>
+    <title>Bartender</title>
+</head>
+
+<body>
+<div id = "logout"><button onclick="logOutMe()">Logout</button></div>
+<div>
+    <h1>Bartendersidan</h1>
+</div>
+
+<div class ="wrapper" >
+    <div class="infoHeader" id="infoHeaderID">
+        <div class = "goBack" id = "goBackID">
+            Go back!
+        </div>
+
+        <div class = "infoSearch" id="infoSearch">
+            <p>Input for search.</p>
+            <form name="search" onSubmit="return searchBar();">
+                Namn: <input type="text" name="name">
+                Pris: <input type="text" name="price">
+                Antal: <input type="text" name="amount">
+                <input type="submit" name="name" value="Filtrera">
+
+            </form>
+
+        </div>
+    </div>
+
+    <div class="orders">
+        Orders....
+    </div>
+
+
+    <div class= "beerInfo" id="beerInfoID">
+        <!-- <script>loadBeerInfo();</script> -->
+        <ul>
+            <li>
+            <form name="beerInfoInput" onSubmit="">
+                <input type="text" name="beerInfoInputNameOne" value="BärkaNamn1">
+                <input type="text" name="beerInfoInputNameTwo" value="BärkaNamn2">
+                <input type="submit" name="name" value="Ändra">
+
+                <input type="text" name="beerInfoInputAmount" value="Amount 24">
+                <input type="text" name="beerInfoInputPrice" value="55 kr">
+                <button>Beställ skit</button>
+
+
+
+            </form>
+            </li>
+        </ul>
+
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

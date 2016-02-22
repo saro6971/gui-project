@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/style-bartender.css">
     <script src="../js/script-bartender.js"></script>
+    <script src="../js/jquery-1.12.0.js"></script>
     <title>Bartender</title>
 </head>
 
@@ -13,45 +14,34 @@
     <h1>Bartendersidan</h1>
 </div>
 
-<div id="wrapper">
-    <div class = "singleBoxOne">
-        <div class = "notificationMenu">
-            <ul>
-                <li>info1 - du har sliut på bärka och måste beställa</li>
-                <li>info1 - ALLT ÄR SLUUUUUUUUUUUUUUUUUUUUUUUUUT</li>
-                <li>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</li>
-                <li>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</li>
-            </ul>
+<div class ="wrapper" >
+    <div class = "bNotifications" id="singleBoxOneID">
+        <div id = "notifications">
+            <script>loadNotifications();</script>
         </div>
     </div>
 
-    <div class="fourBox">
-        <div class = "fourBoxMini"  id ="startBeer" onClick="clickBeer()">
-            <div class ="textAlign"><p>Köpa bärka</p></div>
+    <div class="bFourBox" id = "fourBoxID">
+        <div class = "bFourBoxMini"  id ="startBeer" onClick="clickBeer()">
+            <div class ="bBoxesTextAlign"><p>Köpa bärka</p></div>
         </div>
 
-        <div class = "fourBoxMini" onClick="clickBeerInfo()">
-            <div class="textAlign" id = "startInfo"><p>Info om bärka</p></div>
+        <div class = "bFourBoxMini" onClick="clickBeerInfo()">
+            <div class="bBoxesTextAlign" id = "startInfo"><p>Info om bärka</p></div>
         </div>
-        <div class = "fourBoxMini" onClick="clickCustomer()">
-            <div class="textAlign" id = "startCustomer"><p>Kunder</p></div>
+        <div class = "bFourBoxMini" onClick="clickCustomer()">
+            <div class="bBoxesTextAlign" id = "startCustomer"><p>Kunder</p></div>
         </div>
-        <div class = "fourBoxMini" onClick="clickTables()">
-            <div class="textAlign" id ="startTable" ><p>Bord</p></div>
+        <div class = "bFourBoxMini" onClick="clickTables()">
+            <div class="bBoxesTextAlign" id ="startTable" ><p>Bord</p></div>
         </div>
     </div>
 
-    <div class = "singleBoxTwo" onClick="clickSaleInfo()">
-        <div id="textAlignRuta"><p>SALES SAKER</p></div>
+    <div class = "bSales" id="singleBoxTwoID" onClick="clickSaleInfo()" >
+        <div id="bTextAlignRuta"><p>SALES SAKER</p></div>
     </div>
 
 </div>
-
-
-
-
-
-
 
 </body>
 
