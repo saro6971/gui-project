@@ -7,6 +7,7 @@ body {
     height:90%;
     width:95%;
 }
+
 h1 {
     text-align:center;
 
@@ -24,25 +25,8 @@ h1 {
     align:left;
 }
 
-#notificationText {
-    overflow: auto
-
-}
-
-.notificationMenu {
-    overflow-y: scroll;
-}
-
-#notificationMenu ul li a{
-    display: block;
-    color: black;
-    padding: 10px 0 10px 20px;
-    text-decoration: none;
-}
-
-ul {
-
-    list-style-type: none;
+.bNotifications ul {
+    list-style-type: circle;
     margin: 0;
     padding: 0;
 }
@@ -54,17 +38,17 @@ ul {
     padding-right: 15%;
 }
 
-.singleBoxOne {
+.bNotifications {
     display:block;
     background: darkred;
     position: center;
     height:15%;
     border-style: groove;
-
-
+    overflow: auto;
+    padding: 5px 10px 5px 10px;
 }
 
-.singleBoxTwo {
+.bSales {
     background: darkred;
     position: center;
     text-align: center;
@@ -72,7 +56,7 @@ ul {
     border-style: groove;
 }
 
-.fourBox {
+.bFourBox {
     padding-top: 10%;
     padding-bottom: 10%;
     color: darkred;
@@ -80,7 +64,7 @@ ul {
     overflow: hidden;
 }
 
-.fourBoxMini {
+.bFourBoxMini {
     background: lightgrey;
     width: 49%;
     height:49%;
@@ -88,7 +72,7 @@ ul {
     border-style: groove;
 }
 
-.textAlign {
+.bBoxesTextAlign {
     position: relative;
     color: darkgrey;
     top: 35%;
@@ -102,7 +86,7 @@ ul {
     */
 }
 
-.textAlignRuta{
+.bTextAlignRuta{
     position: relative;
     top: 35%;
     left: 0%;
@@ -110,23 +94,96 @@ ul {
 
 }
 
+.infoHeader{
+    padding-top: 10%;
+    padding-bottom: 10%;
+    height: 15%;
+}
 
-#startBeer {
+.goBack{
+    display:block;
+    background: darkred;
+    position: center;
+    height:100%;
+    width: 5%;
+    border-style: groove;
+    padding: 5px 10px 5px 10px;
+    float:left;
+}
 
+.infoSearch{
+    display:block;
+    background: white;
+    position: center;
+    height:100%;
+    width: 50%;
+    border-style: groove;
+    overflow: auto;
+    float:right;
+    padding: 5px 10px 5px 10px;
+}
+
+.infoSearch input[type=text]{
+    width: 15%;
+}
+
+.orders {
+    display:block;
+    background: white;
+    position: center;
+    height:50%;
+    width: 30%;
+    border-style: groove;
+    overflow: auto;
+    padding: 5px 10px 5px 10px;
+    float: left;
 
 }
 
-#startInfo {
+.beerInfo {
+    display:block;
+    background: white;
+    position: center;
+    height:50%;
+    width: 52%;
+    border-style: groove;
+    overflow: auto;
+    float:right;
+    /*padding: 5px 10px 5px 10px;*/
+}
 
+.beerInfo input[type=text]{
+    width: 30%;
+    padding-right: 5%;
 
 }
 
-#startCustomer {
+.beerInfo input[type=submit]{
+    width: 20%;
+    float:right;
 
+}
+
+.beerInfo button{
+    width: 20%;
+    float:right;
 
 }
 
-#startTable {
+.beerInfo ul {
+    list-style-type: circle;
 
+    margin: 0;
+    padding: 0;
 
 }
+
+.beerInfo ul li {
+    border-bottom: 1px solid black;
+    background: #cce5ff;
+}
+
+
+
+
+
