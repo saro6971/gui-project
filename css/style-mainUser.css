@@ -41,7 +41,7 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 200px;
+    width: inherit;
 }
 
 #menuWrap{
@@ -94,7 +94,9 @@ ul {
     display: table-cell;
 }
 
-
+.price{
+    padding-left: 0.5em;
+}
 
 
 .beerItem:hover{
@@ -111,11 +113,45 @@ ul {
 /*****************************SHOPPING CART*****************************/
 
 #shoppingCart{
+    position: relative;
     width: 33%;
     height: auto;
     min-height: 500px;
     float:right;
     border: dashed #aaaaaa;
+}
+
+.deleteButton{
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    background-color: #ff1211;
+    float: right;
+}
+
+
+.addButton{
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    background: #80C347;
+    float: right;
+}
+
+.boughtBeer{
+    padding: 0.5em;
+    display: block;
+    width: inherit;
+    height: 2em;
+}
+
+.totalSum{
+    position: absolute;
+    bottom:25px;
+    padding-left: 1em;
+}
+.shopName{
+    display: block;
 }
 
 /*****************************Menu*****************************/
