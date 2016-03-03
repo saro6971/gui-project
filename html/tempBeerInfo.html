@@ -37,25 +37,26 @@
         Orders....
     </div>
 
+    <div id="lightEdit" class="white_content">
+    </div>
+    <div id="fadeEdit" class="black_overlay"></div>
+
+    <div id="lightOrder" class="white_content"><a href = "javascript:void(0)" onclick ="closeDiv()">Close</a></div>
+    <div id="fadeOrder" class="black_overlay"></div>
+
 
     <div class= "beerInfo" id="beerInfoID">
-        <!-- <script>loadBeerInfo();</script> -->
-        <ul>
-            <li>
-            <form name="beerInfoInput" onSubmit="">
-                <input type="text" name="beerInfoInputNameOne" value="BärkaNamn1">
-                <input type="text" name="beerInfoInputNameTwo" value="BärkaNamn2">
-                <input type="submit" name="name" value="Ändra">
 
-                <input type="text" name="beerInfoInputAmount" value="Amount 24">
-                <input type="text" name="beerInfoInputPrice" value="55 kr">
-                <button>Beställ skit</button>
+        <script>loadBeerInfo();</script>
+        <!--<ul class = "beerInfoUl">
+            <li><p>Name1: BärkaNamn1 - Name2: BärkaNamn 2
+                <button onclick="editBeer('nameInfoOne','nameInfoTwo','amountInfo','priceInfo')">Ändra</button></p>
 
+                <p>Amount: 24 - Price: 55
+                    <button onclick="orderBeer(nameInfoOne,nameInfoTwo)">Beställ</button></p>
 
-
-            </form>
             </li>
-        </ul>
+        </ul>-->
 
 
     </div>

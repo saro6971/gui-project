@@ -152,17 +152,16 @@ h1 {
     /*padding: 5px 10px 5px 10px;*/
 }
 
-.beerInfo input[type=text]{
-    width: 30%;
-    padding-right: 5%;
+.beerInfo li{
+    width: 100%;
+    float:left;
 
 }
 
-.beerInfo input[type=submit]{
-    width: 20%;
-    float:right;
-
+.beerInfo p{
+    margin:3px;
 }
+
 
 .beerInfo button{
     width: 20%;
@@ -183,7 +182,39 @@ h1 {
     background: #cce5ff;
 }
 
+.black_overlay{
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index:1001;
+    -moz-opacity: 0.8;
+    opacity:.80;
+    filter: alpha(opacity=80);
+}
+.white_content {
+    display: none;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    padding: 16px;
+    border: 16px solid orange;
+    background-color: white;
+    z-index:1002;
+    overflow: auto;
+}
 
+#lightEdit ul {
+    list-style-type: none;
+}
+#lightEdit li {
+    border:0px;
+}
 
 
 
