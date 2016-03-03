@@ -2,14 +2,14 @@
 
 <html lang="en">
 <head>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/style-mainUser.css">
     <script src="../js/script-mainUser.js"></script>
     <title>Awesome pub</title>
 </head>
-<ul id="menu-bar">
+<!--<ul id="menu-bar">
     <li class="active"><a href="#">Home</a></li>
     <li><a href="#">Products</a>
         <ul>
@@ -30,14 +30,16 @@
     <li><a href="#">About</a></li>
     <li><a href="#">Contact Us</a></li>
 </ul>
+-->
 <div>
     <h1>The Flying Dutchman    </h1>
 </div>
 <body>
 <form action="" id="search-form">
     <fieldset>
-        <input type="text" id="search" name="search" />
-        <input type="submit" id="search-submit" value="" />
+        <input type="text" id="search-criteria" />
+        <input type="button" id="search" value="search" />
+        <img class="langPic" src="../swedish_british_flags-2-1.jpg" height="50" width="100" onclick="">
     </fieldset>
 </form>
 <div id="beer">
@@ -46,7 +48,10 @@
 <div id="shoppingCart" ondrop="drop(this,event)" ondragover="allowDrop(event)">
 Drag beers here to shop!
 </div>
-
+<button id="buyButton" onclick="">Buy</button>
+<button id="clearButton" onclick="clearButton()"> Clear</button>
+<button id="undoButton" onclick="undoButton()">Undo</button>
+<button id="redoButton" onclick="redoButton()">Redo</button>
 </body>
 
 </html>

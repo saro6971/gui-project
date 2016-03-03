@@ -1,11 +1,14 @@
 h1{
     display: block;
-    color: red;
+    color: #DE1B1B;
     position: relative;
     padding-left: 60%;
     padding-bottom: 8%;
 }
 
+html{
+    background-color:#F6F6F6;
+}
 /*body{
     background:url("https://pixabay.com/static/uploads/photo/2015/07/02/10/27/bar-828768_960_720.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -13,6 +16,9 @@ h1{
     -o-background-size: cover;
     background-size: cover;
 }*/
+.langPic{
+    float: right;
+}
 
 #menu{
     float:left;
@@ -55,20 +61,33 @@ ul {
 /*.priceId{
 
 }*/
+.name{
+    display: block;
+    width: inherit;
+    float: left;
+    clear: both;
+}
+
 ::-webkit-scrollbar {
     display: none;
 }
+/*
+padding: 0.5em;
+    display: block;
+    width: inherit;
+    height: 2em;
+*/
 .beerItem{
-    border: double green;
-    background-color: antiquewhite;
+    border: solid #2B2B2B 1px;
+    background-color: transparent;
     text-align:center;
     display:inline-flex;
-    position:relative;
+    /*position:relative;*/
     width: 19%;
-    min-height: 150px;
+    min-height: 100px;
     /*height: auto;*/
     justify-content: center;
-    align-items: center;
+   /* align-items: baseline;*/
 }
 
 .beerItem a{
@@ -89,12 +108,12 @@ ul {
     margin:0.5em auto;
     width: 66%;
     overflow-y: scroll;
-    max-height: 600px;
-    border:1px solid black;
+    max-height: 680px;
     display: table-cell;
 }
 
 .price{
+    float: left;
     padding-left: 0.5em;
 }
 
@@ -118,7 +137,7 @@ ul {
     height: auto;
     min-height: 500px;
     float:right;
-    border: dashed #aaaaaa;
+    border: dashed #DE1B1B;
 }
 
 .deleteButton{

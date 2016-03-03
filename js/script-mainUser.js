@@ -6,6 +6,7 @@
 
  * By default elements are not allowed to be dropped in other elements, preventDefault prevents this.
  */
+
 function allowDrop(ev) {
     ev.preventDefault();
 }
@@ -19,12 +20,10 @@ var elements = [];
 function drag(element, ev) {
     var index = elements.indexOf(element);
     if(index == -1){
-        // if not already in the array then we add it
         elements.push(element);
         index = elements.length-1;
     }
     ev.dataTransfer.setData("index", index);
-   // console.log(index);
 }
 
 /*
@@ -38,8 +37,6 @@ function drag(element, ev) {
 function drop(target, ev) {
     ev.preventDefault();
     var element = elements[event.dataTransfer.getData('index')];
-    //var pos = element.indexOf("Price")
-    //console.log($(element).attr('id'));
     var id = $(element).attr('id');
     var price = parseInt($('#'+ id +".beerItem").attr('p'));
     var name = $('#'+ id +".beerItem").attr('name');
@@ -50,35 +47,69 @@ function drop(target, ev) {
         price: price,
         quantity: quantity
     };
-    addCart(boughtBeer);
-    //target.appendChild(element);
-    /*var data = ev.dataTransfer.getData("text");
-     console.log(data);
-     ev.target.appendChild(document.getElementById(data));
-     */
+    addMain('drop',boughtBeer);
 }
 
+function addMain(from, obj){
+    if(from ==='drop'){
+        addCart(obj);
+    }else if(from ==='button'){
+        var beer = document.getElementById(parseInt(obj.id.substring(3)));
+        var beer2 = 'bought'+obj.id.substring(3);
+        var boughtBeer = {
+            name: beer.getAttribute('name'),
+            beer_id: beer.getAttribute('id'),
+            price: parseInt(beer.getAttribute('p')),
+            quantity: parseInt(document.getElementById(beer2).getAttribute('q'))
+        };
+        addCart(boughtBeer);
+    }
+}
 
 function addCart(boughtBeer){
+    var add = {
+        action:"add",
+        obj:boughtBeer
+    };
     for(var item in shoppingCartList){
         if (shoppingCartList[item].beer_id == boughtBeer.beer_id){
-            //shoppingCartList[item].quantity -=1;
             shoppingCartList[item].quantity +=1;
             updateView(shoppingCartList);
+            undo.push(add);
             return;
         }
     }
     boughtBeer.quantity+=1;
     shoppingCartList.push(boughtBeer);
     updateView(shoppingCartList);
+    undo.push(add);
 }
 
-function removeFromCart(boughtBeer){
-    var idBeer = parseInt(boughtBeer.id.substring(6));
+function removeFromCart(from, obj){
+    var boughtBeer;
+    if(from ==='button'){
+        var beer = document.getElementById(parseInt(obj.id.substring(6)));
+        var beer2 = 'bought'+obj.id.substring(6);
+         boughtBeer = {
+            name: beer.getAttribute('name'),
+            beer_id: beer.getAttribute('id'),
+            price: parseInt(beer.getAttribute('p')),
+            quantity: parseInt(document.getElementById(beer2).getAttribute('q'))
+        };
+
+    }else {
+        boughtBeer=obj;
+        }
+
+    var remove ={
+        action:"remove",
+        obj:boughtBeer
+    }
     var index =-1;
     for(var i = 0; i<shoppingCartList.length; i++){
-        if(shoppingCartList[i].beer_id == idBeer){
+        if(shoppingCartList[i].beer_id == boughtBeer.beer_id){
             shoppingCartList[i].quantity-=1;
+            undo.push(remove);
             if(shoppingCartList[i].quantity == 0){
                 shoppingCartList.splice(i,1);
             }
@@ -87,15 +118,7 @@ function removeFromCart(boughtBeer){
     }
 }
 
-function addButtonCart(boughtBeer){
-    var idBeer = parseInt(boughtBeer.id.substring(3));
-    for(var item in shoppingCartList){
-        if(shoppingCartList[item].beer_id == idBeer){
-            shoppingCartList[item].quantity +=1;
-        }
-    }
-    updateView(shoppingCartList);
-}
+
 
 function updateView(shoppingCartList){
     var buyingBeer ="<div><ul>";
@@ -105,8 +128,8 @@ function updateView(shoppingCartList){
         buyingBeer += "</b></span><span class='price'>"
         buyingBeer += shoppingCartList[item].quantity;
         buyingBeer += " x "+ shoppingCartList[item].price +" = " + shoppingCartList[item].price *shoppingCartList[item].quantity +" SEK";
-        buyingBeer += "</span>   <button class='deleteButton' id=" +'delete' + shoppingCartList[item].beer_id +" type='button' onclick=\"removeFromCart(this)\" ><b>-</b></button>" +
-                                "<button class='addButton' id=" +'add' + shoppingCartList[item].beer_id +" type='button' onclick=\"addButtonCart(this)\" ><b>+</b></button>";
+        buyingBeer += "</span>   <button class='deleteButton' id=" +'delete' + shoppingCartList[item].beer_id +" type='button' onclick=\"removeFromCart('button',this)\" ><b>-</b></button>" +
+                                "<button class='addButton' id=" +'add' + shoppingCartList[item].beer_id +" type='button' onclick=\"addMain('button',this)\" ><b>+</b></button>";
       }
     var sum = totalSum();
     buyingBeer +="</li></ul></div><span class='totalSum'>Total sum: "+ sum +" SEK</span>"
@@ -122,6 +145,61 @@ function totalSum(){
     }
     return sum;
 }
+
+function clearButton(){
+    shoppingCartList=[];
+    updateView(shoppingCartList);
+    undo =[];
+    redo=[];
+}
+
+function undoButton(){
+    var actionToUndo = undo.pop();
+    if(actionToUndo.action == "add"){
+        removeFromCart('undo',actionToUndo.obj);
+        redo.push(actionToUndo);
+        undo.pop();
+    }else{
+        //if remove
+        console.log(actionToUndo);
+        actionToUndo.obj.quantity-=1;
+        addMain('drop',actionToUndo.obj);
+        redo.push(actionToUndo);
+        undo.pop();
+    }
+}
+
+function redoButton(){
+    var actionToRedo = redo.pop();
+    if(actionToRedo.action == "add"){
+        addCart(actionToRedo.obj);
+    }else{
+        //if remove
+        removeFromCart('redo',actionToRedo.obj);
+    }
+}
+$(document).ready(function() {
+
+    $("#search-criteria").keyup(function(){
+        var g = $(this).val().toLowerCase();
+        $(".beerItem .shopName").each(function() {
+            var s = $(this).text().toLowerCase();
+            $(this).closest('.beerItem')[ s.indexOf(g) !== -1 ? 'show' : 'hide' ]();
+        });
+    });
+
+});
+    /*
+$("#search-criteria").keyup(function(){
+    console.log("asd");
+    var g = $(this).val().toLowerCase();
+    $(".beerItem .shopName").each(function() {
+        var s = $(this).text().toLowerCase();
+        $(this).closest('.beerItem')[ s.indexOf(g) !== -1 ? 'show' : 'hide' ]();
+    });
+});
+*/
+
 
 /*
 * xmlhttprequest is an api to transfer any data from and to clint/server
@@ -144,9 +222,9 @@ function loadItems() {
                     + " q=0"
                         // + " q="+beers[i]['count']
                     + " name=\""+beers[i]['namn'] +" "+ beers[i]['namn2'] + "\""
-                    + " class='beerItem' draggable='true' ondragstart='drag(this,event)' ><span>"
+                    + " class='beerItem' draggable='true' ondragstart='drag(this,event)' ><span class='shopName'><b>"
                     + beers[i]["namn"] +" "+beers[i]["namn2"]+
-                    "</span><span class='price'>  "   +
+                    "</b></span><span class='price'>  "   +
                     "  Price: "
                     + beers[i]["pub_price"] +
                     " SEK </span></li>" );
@@ -158,6 +236,8 @@ function loadItems() {
     };
     xhttp.send();
 }
-//keeping track of shopping
+//initiate keeping track of shopping, undo, redo
 var shoppingCartList = [];
+var undo = [];
+var redo = [];
 loadItems();
