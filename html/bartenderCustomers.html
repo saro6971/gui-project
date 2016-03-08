@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../css/style-bartender.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+    <script src="../js/script-bartenderCustomer.js"></script>
+    <script src="../js/script-bartenderAux.js"></script>
+    <title>Customer</title>
+</head>
+
+<body id="bodybutton" class="body1">
+<div id = "logout"><button onclick="logOutMe()">Logout</button></div>
+<div>
+    <h1>Customer</h1>
+</div>
+
+<div class ="wrapper" id="wrapperBox">
+        <div class="infoHeader">
+            <a href="../html/bartenderIndex.html">
+            <div class = "goBack">
+                <p>Go back!</p>
+            </div>
+            </a>
+
+        <div class = "infoSearch" id="infoSearch">
+            Search <input type="text" id="searchCustomer">
+
+        </div>
+    </div>
+
+    <div class="orders">
+        <script>getPaymentsUser();</script>
+        <button id="orderButton" onclick="getPaymentsUser()">Refresh payments</button>
+        <div id ="orderUl">
+
+
+        </div>
+
+    </div>
+
+    <div class= "infoList" id="customerInfoId">
+        <script>loadCustomerList();</script>
+    </div>
+
+
+
+    <div id="lightEdit" class="white_content"></div>
+    <div id="fadeEdit" class="black_overlay"></div>
+
+    <div id="lightOrder" class="white_content">
+        <a href = "javascript:void(0)" onclick ="closeDiv()">Close</a>
+    </div>
+    <div id="fadeOrder" class="black_overlay"></div>
+
+
+</div>
+</body>
+</html>

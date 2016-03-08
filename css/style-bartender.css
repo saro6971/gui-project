@@ -13,6 +13,12 @@ h1 {
 
 }
 
+a:visited, a:link {
+    text-decoration: none;
+    border-color: darkgrey;
+    color: #C5C5C5;
+}
+
 #logout {
     /*border-style: groove;*/
     position:absolute;
@@ -29,6 +35,10 @@ h1 {
     list-style-type: circle;
     margin: 0;
     padding: 0;
+}
+
+.bNotifications ul li{
+    margin-top: 2px;
 }
 
 .wrapper {
@@ -123,10 +133,6 @@ h1 {
     padding: 5px 10px 5px 10px;
 }
 
-.infoSearch input[type=text]{
-    width: 15%;
-}
-
 .orders {
     display:block;
     background: white;
@@ -140,7 +146,7 @@ h1 {
 
 }
 
-.beerInfo {
+.infoList {
     display:block;
     background: white;
     position: center;
@@ -149,27 +155,28 @@ h1 {
     border-style: groove;
     overflow: auto;
     float:right;
+    font-size: 90%;
     /*padding: 5px 10px 5px 10px;*/
 }
 
-.beerInfo li{
+.infoList li{
     width: 100%;
     float:left;
 
 }
 
-.beerInfo p{
-    margin:3px;
+.infoList p{
+    margin-top: 0px;
+    margin-right: 0px;
 }
 
-
-.beerInfo button{
+.infoList button{
     width: 20%;
     float:right;
-
+    text-align:left;
 }
 
-.beerInfo ul {
+.infoList ul {
     list-style-type: circle;
 
     margin: 0;
@@ -177,7 +184,7 @@ h1 {
 
 }
 
-.beerInfo ul li {
+.infoList ul li {
     border-bottom: 1px solid black;
     background: #cce5ff;
 }
@@ -195,6 +202,7 @@ h1 {
     opacity:.80;
     filter: alpha(opacity=80);
 }
+
 .white_content {
     display: none;
     position: absolute;
@@ -212,9 +220,62 @@ h1 {
 #lightEdit ul {
     list-style-type: none;
 }
+
 #lightEdit li {
     border:0px;
 }
 
+#lightOrder ul {
+    list-style-type: none;
+}
 
+#lightOrder li {
+    border:0px;
+}
 
+.orders ul {
+    list-style-type: circle;
+    border: 1px solid black;
+    margin: 5px 0px 0px 0px;
+    padding: 0;
+}
+
+.orders ul li {
+    list-style-type: none;
+    background: #cce5ff;
+
+}
+
+#orderButton {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 25%;
+}
+
+#cancel {
+    border: 2px solid black;
+    padding-left: 3px;
+    font-size:29px;
+    float: right;
+}
+
+input[type="text"] {
+    width:25%;
+
+}
+#lightButton {
+    position:fixed;
+    margin-left: 45%;
+
+}
+
+.leftBoxOrders{
+    width: 50%;
+    float:left;
+
+}
+
+.rightBoxOrders{
+    width: 50%;
+    float: right;
+}

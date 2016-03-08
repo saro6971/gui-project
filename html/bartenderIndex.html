@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../css/style-bartender.css">
+    <script src="../js/script-bartenderIndex.js"></script>
+    <script src="../js/script-bartenderAux.js"></script>
+    <title>Bartender</title>
+</head>
+
+<body>
+<div id = "logout"><button onclick="logOutMe()">Logout</button></div>
+<div>
+    <h1>Bartendersidan</h1>
+</div>
+
+<div class ="wrapper" id="wrapperBox" >
+    <div class = "bNotifications" id="singleBoxOneID">
+        <div id = "notifications">
+            <script>loadNotifications();</script>
+        </div>
+    </div>
+
+    <div class="bFourBox" id = "fourBoxID">
+        <a href="">
+            <div class = "bFourBoxMini"  id ="startBeer">
+                 <div class ="bBoxesTextAlign"><p>Köpa bärka</p></div>
+            </div>
+        </a>
+        <a href="../html/bartenderBeerInfo.html">
+            <div class = "bFourBoxMini">
+                <div class="bBoxesTextAlign" id = "startInfo"><p>Info om bärka</p></div>
+            </div>
+        </a>
+
+        <a href="../html/bartenderCustomers.html">
+            <div class = "bFourBoxMini" >
+                <div class="bBoxesTextAlign" id = "startCustomer"><p>Kunder</p></div>
+            </div>
+        </a>
+
+        <a href="">
+            <div class = "bFourBoxMini">
+                <div class="bBoxesTextAlign" id ="startTable" ><p>Bord</p></div>
+            </div>
+        </a>
+    </div>
+    <a href="">
+        <div class = "bSales" id="singleBoxTwoID" >
+            <div id="bTextAlignRuta"><p>SALES SAKER</p></div>
+        </div>
+    </a>
+</div>
+
+</body>
+
+</html>
