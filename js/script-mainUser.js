@@ -178,7 +178,19 @@ function redoButton(){
         removeFromCart('redo',actionToRedo.obj);
     }
 }
+
+
+
 $(document).ready(function() {
+
+    $("#buyButton").click(function(){
+        if(shoppingCartList.length != 0){
+
+        }else{
+            alert("TOM");
+        }
+
+    });
 
     $("#search-criteria").keyup(function(){
         var g = $(this).val().toLowerCase();
