@@ -1,26 +1,21 @@
 .headers{
+    padding-top: 11px;
     color: #DE1B1B;
-    font-family: Josefin slab;
+    font-family: 'Satisfy', cursive;
     font-weight: 600;
     font-size: 48px;
-    position: relative;
-    padding-left: 10%;
+    padding-left: 14%;
 }
 
-.header {
-    background-color: rgba(255, 255, 255, 0.95);
+.heading {
     display: block;
     border-bottom: 1px solid #ddd;
-    font-family: Oswald;
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 18px;
     padding: 15px;
 }
 
-.container {
-    width: 960px;
-}
-
-.header .menu {
+.heading .menu {
     float: right;
     list-style: none;
     margin-top: 5px;
