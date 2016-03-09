@@ -1,11 +1,16 @@
 .headers{
     padding-top: 11px;
     color: #DE1B1B;
+    background-color: #fff;
     font-family: 'Satisfy', cursive;
     font-weight: 600;
     font-size: 48px;
     padding-left: 14%;
+    margin-bottom: 0%;
 }
+
+
+
 
 .heading {
     display: block;
@@ -13,6 +18,7 @@
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 18px;
     padding: 15px;
+    background-color: #fff;
 }
 
 .heading .menu {

@@ -1,59 +1,31 @@
-h1{
-    display: block;
-    color: #DE1B1B;
-    position: relative;
-    padding-left: 60%;
-    padding-bottom: 8%;
-}
 
 html{
-    background-color:#F6F6F6;
-}
-/*body{
-    background:url("https://pixabay.com/static/uploads/photo/2015/07/02/10/27/bar-828768_960_720.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}*/
+     background-color:#F6F6F6;
+ }
+
 .langPic{
     float: right;
 }
 
-#menu{
-    float:left;
-    position: fixed;
-    background-color: lightgray;
-    opacity: 0.8;
+fieldset{
+    padding:1em;
 }
 
-#menu ul li a{
-    display: block;
-    color: black;
-    padding: 10px 0 10px 20px;
-    text-decoration: none;
-}
-
-#menu ul li a:hover{
-    -moz-transition-duration: 0.5s;
-    -webkit-transition-duration: 0.5s;
-    background-color: #555;
-    color: white;
-    padding: 10px 0 10px 20px;
-}
-
-
-ul {
+.shopList{
     list-style-type: none;
     margin: 0;
-    padding: 0;
-    width: inherit;
+    height: inherit;
+    padding-left: 0em;
 }
 
 #menuWrap{
     padding-top:  300px;
 }
 
+body{
+    margin-right:1em;
+    background-color: transparent;
+}
 
 
 /***********************LIST OF BEERS**********************************/
@@ -61,6 +33,10 @@ ul {
 /*.priceId{
 
 }*/
+#search-criteria{
+    margin-left: 3em;
+}
+
 .name{
     display: block;
     width: inherit;
@@ -105,10 +81,9 @@ padding: 0.5em;
 }
 #beerListId{
     float: left;
-    margin:0.5em auto;
     width: 66%;
     overflow-y: scroll;
-    max-height: 680px;
+    max-height: 700px;
     display: table-cell;
 }
 
@@ -133,11 +108,42 @@ padding: 0.5em;
 
 #shoppingCart{
     position: relative;
-    width: 33%;
+    width: 34%;
     height: auto;
     min-height: 500px;
     float:right;
     border: dashed #DE1B1B;
+}
+
+#buyButton{
+    width: 5em;
+    height: 3em;
+    border-radius: 50em;
+}
+
+#buyButton:hover, #clearButton:hover, #undoButton:hover, #redoButton:hover {
+    -moz-transition-duration: 0.5s;
+    -webkit-transition-duration: 0.5s;
+    background-color: #A9A9A9;
+    color: black;
+}
+
+#clearButton{
+    width: 5em;
+    height: 3em;
+    border-radius: 50em;
+}
+
+#undoButton{
+    width: 5em;
+    height: 3em;
+    border-radius: 50em;
+}
+
+#redoButton{
+    width: 5em;
+    height: 3em;
+    border-radius: 50em;
 }
 
 .deleteButton{
@@ -161,7 +167,7 @@ padding: 0.5em;
     padding: 0.5em;
     display: block;
     width: inherit;
-    height: 2em;
+    height: 3em;
 }
 
 .totalSum{

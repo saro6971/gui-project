@@ -37,7 +37,9 @@ function drag(element, ev) {
 function drop(target, ev) {
     ev.preventDefault();
     var element = elements[event.dataTransfer.getData('index')];
+    console.log(element);
     var id = $(element).attr('id');
+    // kolla vad det är för typ av sak du släpper
     var price = parseInt($('#'+ id +".beerItem").attr('p'));
     var name = $('#'+ id +".beerItem").attr('name');
     var quantity = parseInt($('#'+ id +".beerItem").attr('q'));
@@ -121,9 +123,9 @@ function removeFromCart(from, obj){
 
 
 function updateView(shoppingCartList){
-    var buyingBeer ="<div><ul>";
+    var buyingBeer ="<ul class='shopList'>";
     for(var item in shoppingCartList){
-        buyingBeer += "<li class='boughtBeer' id=" +'bought'+ shoppingCartList[item].beer_id +" q="+shoppingCartList[item].quantity+" ><span class='shopName'><b>";
+        buyingBeer += "<li class='boughtBeer' id=" +'bought'+ shoppingCartList[item].beer_id +" q="+shoppingCartList[item].quantity+" draggable='false' ><span class='shopName'><b>";
         buyingBeer += shoppingCartList[item].name;
         buyingBeer += "</b></span><span class='price'>"
         buyingBeer += shoppingCartList[item].quantity;
@@ -132,7 +134,7 @@ function updateView(shoppingCartList){
                                 "<button class='addButton' id=" +'add' + shoppingCartList[item].beer_id +" type='button' onclick=\"addMain('button',this)\" ><b>+</b></button>";
       }
     var sum = totalSum();
-    buyingBeer +="</li></ul></div><span class='totalSum'>Total sum: "+ sum +" SEK</span>"
+    buyingBeer +="</li></ul><span class='totalSum'>Total sum: "+ sum +" SEK</span>"
     document.getElementById("shoppingCart").innerHTML = buyingBeer;
 }
 
@@ -156,12 +158,13 @@ function clearButton(){
 function undoButton(){
     var actionToUndo = undo.pop();
     if(actionToUndo.action == "add"){
+        //console.log("add " + JSON.stringify(undo));
         removeFromCart('undo',actionToUndo.obj);
         redo.push(actionToUndo);
         undo.pop();
     }else{
         //if remove
-        console.log(actionToUndo);
+        //console.log("delete" + JSON.stringify(undo));
         actionToUndo.obj.quantity-=1;
         addMain('drop',actionToUndo.obj);
         redo.push(actionToUndo);
