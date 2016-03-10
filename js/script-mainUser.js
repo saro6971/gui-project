@@ -19,11 +19,14 @@ function allowDrop(ev) {
 var elements = [];
 function drag(element, ev) {
     var index = elements.indexOf(element);
+    console.log("first " + index);
     if(index == -1){
         elements.push(element);
         index = elements.length-1;
     }
     ev.dataTransfer.setData("index", index);
+    console.log("second " + index);
+    console.log("element " + elements);
 }
 
 /*
@@ -76,9 +79,10 @@ function addCart(boughtBeer){
     for(var item in shoppingCartList){
         if (shoppingCartList[item].beer_id == boughtBeer.beer_id){
             shoppingCartList[item].quantity +=1;
-            console.log(boughtBeer.beer_id);
+            //boughtBeer.quantity+=1;
             updateView(shoppingCartList);
             undo.push(add);
+            redo= [];
             return;
         }
     }
@@ -86,6 +90,7 @@ function addCart(boughtBeer){
     shoppingCartList.push(boughtBeer);
     updateView(shoppingCartList);
     undo.push(add);
+    redo=[];
 }
 
 function removeFromCart(from, obj){
@@ -103,17 +108,19 @@ function removeFromCart(from, obj){
     }else {
         boughtBeer=obj;
         }
-
-    var remove ={
-        action:"remove",
-        obj:boughtBeer
-    }
-    var index =-1;
+    //var index =-1;
     for(var i = 0; i<shoppingCartList.length; i++){
         if(shoppingCartList[i].beer_id == boughtBeer.beer_id){
             shoppingCartList[i].quantity-=1;
+
+            var remove ={
+                action:"remove",
+                obj:shoppingCartList[i]
+            }
+            //boughtBeer.quantity-=1;
             undo.push(remove);
-            if(shoppingCartList[i].quantity == 0){
+            redo=[];
+            if(shoppingCartList[i].quantity <= 0){
                 shoppingCartList.splice(i,1);
             }
         }
@@ -157,29 +164,45 @@ function clearButton(){
 }
 
 function undoButton(){
-    var actionToUndo = undo.pop();
-    if(actionToUndo.action == "add"){
-        //console.log("add " + JSON.stringify(undo));
-        removeFromCart('undo',actionToUndo.obj);
-        redo.push(actionToUndo);
-        undo.pop();
-    }else{
-        //if remove
-        //console.log("delete" + JSON.stringify(undo));
-        actionToUndo.obj.quantity-=1;
-        addMain('drop',actionToUndo.obj);
-        redo.push(actionToUndo);
-        undo.pop();
+    if (undo.length > 0) {
+        var actionToUndo = undo.pop();
+        if(actionToUndo.action == "add"){
+            //console.log("add " + JSON.stringify(undo));
+            var redoBackup = redo;
+            removeFromCart('undo',actionToUndo.obj);
+            redo = redoBackup;
+            redo.push(actionToUndo);
+            console.log(JSON.stringify(undo.pop()));
+
+        }else{
+            //if remove
+            //console.log("delete" + JSON.stringify(undo));
+            //actionToUndo.obj.quantity-=1;
+            var redoBackup = redo;
+            addMain('drop',actionToUndo.obj);
+            redo = redoBackup;
+            redo.push(actionToUndo);
+            console.log(JSON.stringify(undo.pop()));
+        }
     }
 }
 
 function redoButton(){
-    var actionToRedo = redo.pop();
-    if(actionToRedo.action == "add"){
-        addCart(actionToRedo.obj);
-    }else{
-        //if remove
-        removeFromCart('redo',actionToRedo.obj);
+    if (redo.length > 0) {
+        var actionToRedo = redo.pop();
+        undo.push(actionToRedo);
+        if(actionToRedo.action == "add"){
+            var redoBackup = redo;
+            addCart(actionToRedo.obj);
+            undo.pop();
+            redo=redoBackup;
+        }else{
+            //if remove
+            var redoBackup = redo;
+            removeFromCart('redo',actionToRedo.obj);
+            undo.pop();
+            redo = redoBackup;
+        }
     }
 }
 
@@ -205,16 +228,6 @@ $(document).ready(function() {
     });
 
 });
-    /*
-$("#search-criteria").keyup(function(){
-    console.log("asd");
-    var g = $(this).val().toLowerCase();
-    $(".beerItem .shopName").each(function() {
-        var s = $(this).text().toLowerCase();
-        $(this).closest('.beerItem')[ s.indexOf(g) !== -1 ? 'show' : 'hide' ]();
-    });
-});
-*/
 
 
 /*
