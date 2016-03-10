@@ -37,7 +37,7 @@ function drag(element, ev) {
 function drop(target, ev) {
     ev.preventDefault();
     var element = elements[event.dataTransfer.getData('index')];
-    console.log(element);
+    if(typeof element === "undefined"){ return;}
     var id = $(element).attr('id');
     // kolla vad det är för typ av sak du släpper
     var price = parseInt($('#'+ id +".beerItem").attr('p'));
@@ -76,6 +76,7 @@ function addCart(boughtBeer){
     for(var item in shoppingCartList){
         if (shoppingCartList[item].beer_id == boughtBeer.beer_id){
             shoppingCartList[item].quantity +=1;
+            console.log(boughtBeer.beer_id);
             updateView(shoppingCartList);
             undo.push(add);
             return;

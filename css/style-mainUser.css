@@ -173,7 +173,7 @@ padding: 0.5em;
 .totalSum{
     position: absolute;
     bottom:25px;
-    padding-left: 1em;
+    right: 2em;
 }
 .shopName{
     display: block;
