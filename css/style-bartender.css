@@ -5,19 +5,15 @@ html {
 }
 
 body {
+    background-color: transparent;
     height:90%;
-    width:95%;
-}
-
-h1 {
-    text-align:center;
-
+    margin-right: 1em;
 }
 
 a:visited, a:link {
     text-decoration: none;
     border-color: darkgrey;
-    color: #C5C5C5;
+    /*color: #C5C5C5;*/
 }
 
 #logout {
@@ -254,8 +250,12 @@ a:visited, a:link {
 
 input[type="text"] {
     width:25%;
-
 }
+
+input[name="username"] {
+    width: inherit;
+}
+
 #lightButton {
     position:fixed;
     margin-left: 45%;
