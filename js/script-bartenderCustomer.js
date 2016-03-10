@@ -6,6 +6,7 @@ function getPaymentsUser(){
             var orderTempList = JSON.parse(xhttp.responseText).payload;
             $( ".orderList" ).remove();
             var i;
+            paymentList = [];
             var orders = ("");
             for (i = 0; i < orderTempList.length; i++) {
                 orders += ("<ul class='orderList' id='order" + i + "'>");
