@@ -40,7 +40,6 @@ a:visited, a:link {
 
 .wrapper {
     height:90%;
-    width: 70%;
     padding-left: 15%;
     padding-right: 15%;
 }
@@ -49,24 +48,34 @@ a:visited, a:link {
     display:block;
     background: white;
     position: center;
-    height:15%;
+    margin-top: 2em;
+    height:30%;
     border-style: groove;
     overflow: auto;
     padding: 5px 10px 5px 10px;
 }
 
 .bFourBox {
+    text-align: center;
     padding-top: 10%;
     padding-bottom: 10%;
-    color: lightred;
+    padding-left: 15%;
+    color: lightcoral;
     height: 50%;
-    overflow: hidden;
+}
+
+.bFourBoxMini:hover{
+    -moz-transition-duration: 0.5s;
+    -webkit-transition-duration: 0.5s;
+    background-color: lightgray;
 }
 
 .bFourBoxMini {
     background: white;
-    width: 49%;
-    height:49%;
+    font-size: 18px;
+    font-weight: 600;
+    width: 40%;
+    height:100%;
     float:left;
     border-style: groove;
 }
@@ -101,12 +110,11 @@ a:visited, a:link {
 
 .goBack{
     display:block;
-    background: darkred;
+    background: lightgray;
+    color: black;
     position: center;
-    height:100%;
-    width: 5%;
     border-style: groove;
-    padding: 5px 10px 5px 10px;
+    padding: 15px 20px 15px 20px;
     float:left;
 }
 
@@ -114,7 +122,6 @@ a:visited, a:link {
     display:block;
     background: white;
     position: center;
-    height:100%;
     width: 50%;
     border-style: groove;
     overflow: auto;

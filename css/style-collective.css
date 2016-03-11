@@ -10,7 +10,9 @@
 }
 
 
-
+#showName{
+    float: left;
+}
 
 .heading {
     display: block;
