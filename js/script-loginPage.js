@@ -3,7 +3,17 @@
  */
 
 var main = function(){
-var loggedin=[];
+
+    var firstName = sessionStorage.getItem('firstname');
+    var lastName = sessionStorage.getItem('lastname');
+    var userId = sessionStorage.getItem('userid');
+    var asset = sessionStorage.getItem('assets');
+
+    var printed ="<span>Hello "+sessionStorage.getItem('firstname'); +"</span>"
+    document.getElementById("showName").innerHTML = printed;
+
+
+
 
     $('.dropdown-toggle').click(function(){
         $('.dropdown-menu').toggle();
@@ -23,18 +33,14 @@ var loggedin=[];
             {
                 response = text;
                 if(response["type"] === "iou_get"){
-                    var loggedInUser = {
-                        userId: response.payload[0]["user_id"],
-                        firstName: response.payload[0]["first_name"],
-                        lastName: response.payload[0]["last_name"],
-                        assets: response.payload[0]["assets"]
-                    };
-                    whoLoggedIn.push(loggedInUser);
-                    console.log(whoLoggedIn);
-                    var printed ="<span>Hello "+loggedInUser['firstName'] +"</span>"
-                    console.log(printed);
+                    sessionStorage.setItem('userid', response.payload[0]["user_id"]);
+                    sessionStorage.setItem('firstname', response.payload[0]["first_name"]);
+                    sessionStorage.setItem('lastname', response.payload[0]["last_name"]);
+                    sessionStorage.setItem('assets', response.payload[0]["assets"]);
+                    var printed ="<span>Hello "+sessionStorage.getItem('firstname'); +"</span>"
                     document.getElementById("showName").innerHTML = printed;
 
+                    $('.dropdown-menu').toggle();
                 }
                 else {
                     console.log("esa no working hombre");
@@ -52,4 +58,3 @@ var loggedin=[];
 
 
 $(document).ready(main);
-var whoLoggedIn = [];
