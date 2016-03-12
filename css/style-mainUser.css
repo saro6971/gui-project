@@ -106,9 +106,15 @@ padding: 0.5em;
 }*/
 /*****************************SHOPPING CART*****************************/
 
+#rightSide{
+    float: right;
+    height: 1200px;
+    width: 34%;
+}
+
 #shoppingCart{
     position: relative;
-    width: 34%;
+    width: 100%;
     height: auto;
     min-height: 500px;
     float:right;
