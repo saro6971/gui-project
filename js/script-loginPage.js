@@ -10,7 +10,7 @@ var main = function(){
     var asset = sessionStorage.getItem('assets');
 
     var printed ="<span>Hello "+sessionStorage.getItem('firstname'); +"</span>"
-    document.getElementById("showName").innerHTML = printed;
+    //document.getElementById("showName").innerHTML = printed;
 
 
 

@@ -15,6 +15,7 @@
     <script src="../js/script-loginPage.js"></script>
     <script src="../js/script-bartenderBeerInfo.js"></script>
     <script src="../js/script-bartenderAux.js"></script>
+    <script src="../js/language.js"></script>
     <title>Beer info</title>
 </head>
 
@@ -23,14 +24,14 @@
 <div class="heading">
     <div class="container">
         <ul class="menu">
-            <li class="seeBeersNav"><a href="../html/mainUser.html">See the beers</a></li>
-            <li><a href="#">Account details</a> </li>
-            <li class="dropdown"><a class="dropdown-toggle" href="#">Log in</a>
+            <li class="seeBeersNav"><a id="languageClick"><span key="seeBeersLang" class="lang">See the beers</span></a></li>
+            <li><a href="#"><span key="accDetailsLang" class="lang">Account details</span></a> </li>
+            <li class="dropdown"><a class="dropdown-toggle" href="#"><span key="loginLang" class="lang">Log in</span></a>
                 <ul class="dropdown-menu">
                     <li>
                         <form >
-                            Username:<br> <input type="text" name="username"><br>
-                            Password:<br><input type="password" name="Password">
+                            <span key="userNameLang" class="lang">Username:</span><br> <input type="text" name="username"><br>
+                            <span key="pwLang" class="lang">Password:</span><br><input type="password" name="Password">
                             <input type="submit" id="button-login" value="Log in">
                         </form>
                     </li>
@@ -44,16 +45,16 @@
     <div class="infoHeader">
         <a href="../html/bartenderIndex.html">
             <div class = "goBack">
-                <p><b>Go back!</b></p>
+                <p><b key="goBack" class="lang">Go back!</b></p>
             </div>
         </a>
         <div class = "infoSearch" id="infoSearch">
-            Search: <input type="text" id="searchBarName">
+            <span key="search" class="lang">Search</span> <input type="text" id="searchBarName">
         </div>
     </div>
 
     <div class="orders">
-        <button id="orderButton" onclick="confirmOrder()">Confirm order</button>
+        <button id="orderButton" onclick="confirmOrder()" key="confirmOrder" class="lang">Confirm order</button>
         <div id ="orderUl">
 
 
@@ -70,7 +71,7 @@
     <div id="fadeEdit" class="black_overlay"></div>
 
     <div id="lightOrder" class="white_content">
-        <a href = "javascript:void(0)" onclick ="closeDiv()">Close</a>
+        <a href = "javascript:void(0)" onclick ="closeDiv()" key="cancel" class="lang">Close</a>
     </div>
     <div id="fadeOrder" class="black_overlay"></div>
 

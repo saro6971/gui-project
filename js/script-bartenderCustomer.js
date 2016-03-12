@@ -5,15 +5,20 @@ function getPaymentsUser(){
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             var orderTempList = JSON.parse(xhttp.responseText).payload;
             $( ".orderList" ).remove();
+            //langArray[language]['lName']
+            //var language = sessionStorage.getItem("sessionLanguage");
+
+            var language = sessionStorage.getItem("sessionLanguage");
             var i;
             paymentList = [];
             var orders = ("");
             for (i = 0; i < orderTempList.length; i++) {
                 orders += ("<ul class='orderList' id='order" + i + "'>");
-                orders += ("<li>User: " + orderTempList[i]["first_name"] + " " +  orderTempList[i]["last_name"] + " (" + orderTempList[i]["username"] + ")</li>");
-                orders += ("<li>Cashier: " + orderTempList[i]["admin_username"] + "</li>");
-                orders += ("<li>Amount: " + orderTempList[i]["amount"] + "</li>");
-                orders += ("<li> Timestamp: " + orderTempList[i]["timestamp"] + "</li></ul>")
+                orders += ("<li><span key='user' class='lang'>" + langArray[language]['user'] + "</span>" + orderTempList[i]["first_name"] + " " +  orderTempList[i]["last_name"]);
+                orders += ("(" + orderTempList[i]["username"] + ")</li>");
+                orders += ("<li><span key='cashier' class='lang'>" + langArray[language]['cashier'] + "</span>" + orderTempList[i]["admin_username"] + "</li>");
+                orders += ("<li><span key='amount' class='lang'>" + langArray[language]['amount'] + "</span>" + orderTempList[i]["amount"] + "</li>");
+                orders += ("<li><span key='timestamp' class='lang'> " + langArray[language]['timestamp'] + "</span>" + orderTempList[i]["timestamp"] + "</li></ul>")
 
                 var payments = {
                     user: orderTempList[i]["username"],
@@ -29,7 +34,6 @@ function getPaymentsUser(){
     };
     xhttp.send();
 }
-
 function loadCustomerList(){
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET","http://pub.jamaica-inn.net/fpdb/api.php?username=ervtod&password=ervtod&action=iou_get_all", true);
@@ -45,11 +49,12 @@ function loadCustomerList(){
                     username: customer[i]["username"],
                 };
 
-
+                var language = sessionStorage.getItem("sessionLanguage");
                 customerTempList += ("<li class='customerInfoElement' id='" + i +"'>");
-                customerTempList += ("<p>Name: " + customer[i]["first_name"] + " " + customer[i]["last_name"] + "<button onclick='editCustomer(" + i + ")'> Edit</button></p>");
-                customerTempList += ("<p class='username''>Username: " + customer[i]["username"]);
-                customerTempList += ("<button onclick='viewOrders(" + i + ")'>Orders</button></p></li>");
+                customerTempList += ("<p><span key='name' class='lang'>" + langArray[language]['name'] + "</span>" + customer[i]["first_name"] + " " + customer[i]["last_name"]);
+                customerTempList += ("<button onclick='editCustomer(" + i + ")' key='edit' class='lang'>" + langArray[language]['edit'] + "</button></p>");
+                customerTempList += ("<p class='username'><span key='user' class='lang'>" + langArray[language]['user'] + "</span>" + customer[i]["username"]);
+                customerTempList += ("<button onclick='viewOrders(" + i + ")'><span key='orders' class='lang'>" + langArray[language]['orders'] + "</span></button></p></li>");
 
 
                 customerList.push(customerTemp);
@@ -60,7 +65,6 @@ function loadCustomerList(){
     };
     xhttp.send();
 }
-
 function viewOrders(id){
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET","http://pub.jamaica-inn.net/fpdb/api.php?username=hirchr&password=hirchr&action=purchases_get_all", true);
@@ -80,31 +84,33 @@ function viewOrders(id){
                 }
             });
 
+            var language = sessionStorage.getItem("sessionLanguage");
             var i;
-            var elements = ("<button id='lightButton' onclick='closeDiv()'>Cancel</button><div id ='temp'>");
-            var leftBox = ("<div class ='leftBoxOrders'><p>Orders</p>");
-            var rightBox = ("<div class ='rightBoxOrders'><p>Payments (" + assets + ")</p>");
+            var elements = ("<button id='lightButton' onclick='closeDiv()' key='cancel' class='lang'>" + langArray[language]['cancel'] + "</button><div id ='temp'>");
+            var leftBox = ("<div class ='leftBoxOrders'><p key='orders' class='lang'>" + langArray[language]['orders'] + "</p>");
+            var rightBox = ("<div class ='rightBoxOrders'><p><span key='payments' class='lang'>" + langArray[language]['payments'] + "</span>(" + assets + ")</p>");
             for (i = 0; i < orderTempList.length; i++) {
                 if (orderTempList[i]["username"] == customerList[id].username) {
                     leftBox += ("<ul><li>" + orderTempList[i]["namn"] + orderTempList[i]["namn2"] + "</li>");
-                    leftBox += ("<li>Price: " + orderTempList[i]["price"] + "</li>");
-                    leftBox += ("<li> Timestamp: " + orderTempList[i]["timestamp"] + "</li>")
-                    leftBox += ("<li> Transaction ID: " + orderTempList[i]["transaction_id"] + "</li></ul>");
+                    leftBox += ("<li><span key='price' class='lang'>" + langArray[language]['price'] + "</span>" + orderTempList[i]["price"] + "</li>");
+                    leftBox += ("<li> <span key='timestamp' class='lang'>" + langArray[language]['timestamp'] + "</span>" + orderTempList[i]["timestamp"] + "</li>")
+                    leftBox += ("<li> <span key='transId' class='lang'>" + langArray[transId]['cancel'] + "</span>" + orderTempList[i]["transaction_id"] + "</li></ul>");
                 }
             }
 
             i = 0;
             for(i; i < paymentList.length; i++){
                 if(paymentList[i].user ==  customerList[id].username){
-                    rightBox += ("<ul><li>Amount: " + paymentList[i].amount + "</li>");
-                    rightBox += ("<li>Cashier : " + paymentList[i].admin + "</li>");
-                    rightBox += ("<li> Timestamp: " + paymentList[i].time + "</li></ul>")
+                    rightBox += ("<ul><li><span key='amount' class='lang'>" + langArray[language]['amount'] + "</span>" + paymentList[i].amount + "</li>");
+                    rightBox += ("<li><span key='cashier' class='lang'>" + langArray[language]['cashier'] + "</span>" + paymentList[i].admin + "</li>");
+                    rightBox += ("<li><span key='timestamp' class='lang'> " + langArray[language]['timestamp'] + "</span>" + paymentList[i].time + "</li></ul>")
 
                 }
             }
 
             leftBox  += ("</div>" + rightBox + "");
-            leftBox  += ("<ul><li><input type='text' id='inputAmount' value='0'></li><li><button onclick='addFunds(" + id + ")'>Add funds</button></li></ul></div>");
+            leftBox  += ("<ul><li><input type='text' id='inputAmount' value='0'></li>");
+            leftBox  += ("<li><button onclick='addFunds(" + id + ")'><span key='funds' class='lang'>" + langArray[language]['funds'] + "</span></button></li></ul></div>");
             elements += leftBox + "</div>";
             document.getElementById("lightEdit").innerHTML = elements;
             document.getElementById('lightEdit').style.display='block';document.getElementById('fadeEdit').style.display='block';
@@ -112,7 +118,6 @@ function viewOrders(id){
     };
     xhttp.send();
 }
-
 function addFunds(id){
     var amount = document.getElementById("inputAmount").value;
     var tempUrl = ("http://pub.jamaica-inn.net/fpdb/api.php?username=hirchr&password=hirchr&action=payments_append&user_id=");
@@ -152,14 +157,16 @@ function addFunds(id){
 }
 
 function editCustomer(id){
+    var language = sessionStorage.getItem("sessionLanguage");
+    //langArray
 
-    var elements = ("<button id='lightButton' onclick='closeDiv()'>Cancel</button><div id ='temp'>");
-    elements += ("<ul> <li>First Name:<input type='text' id='customerFName' value='" + customerList[id].fName + "'></li>");
-    elements += ("<li>Last Name:<input type='text' id='customerLName' value='" +  customerList[id].lName + "'></li>");
-    elements += ("</li><li>Username<input type='text' id='customerUsername' value='" +  customerList[id].username + "' readonly></li>");
-    elements += ("<li>Email:<input type='text' id='customerEmail' value='Unavailable' readonly></li>");
-    elements += ("<li>Telephone:<input type='text' id='customerTele' value='Unavailable' readonly></li></ul>");
-    elements += ("<button onclick='confirmEditCustomer(" +  customerList[id].id +  ")'>Confirm Edit</button></form></div>");
+    var elements = ("<button id='lightButton' onclick='closeDiv()' key='cancel' class='lang'>" + langArray[language]['cancel'] + "</button><div id ='temp'>");
+    elements += ("<ul> <li><span key='fName' class='lang'>" + langArray[language]['fName'] + "</span><input type='text' id='customerFName' value='" + customerList[id].fName + "'></li>");
+    elements += ("<li><span key='lName' class='lang'>" + langArray[language]['lName'] + "</span><input type='text' id='customerLName' value='" +  customerList[id].lName + "'></li>");
+    elements += ("</li><li><span key='user' class='lang'>" + langArray[language]['user'] + "</span><input type='text' id='customerUsername' value='" +  customerList[id].username + "' readonly></li>");
+    elements += ("<li><span key='email' class='lang'>" + langArray[language]['email'] + "</span><input type='text' id='customerEmail' value=''></li>");
+    elements += ("<li><span key='phone' class='lang'>" + langArray[language]['phone'] + "</span><input type='text' id='customerTele' value=''></li></ul>");
+    elements += ("<button onclick='confirmEditCustomer(" +  customerList[id].id +  ")' key='confirm' class='lang'>Confirm Edit</button></form></div>");
 
     document.getElementById("lightEdit").innerHTML = elements;
     document.getElementById('lightEdit').style.display='block';document.getElementById('fadeEdit').style.display='block';

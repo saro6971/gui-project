@@ -14,6 +14,7 @@
 	<script src="../js/script-loginPage.js"></script>
     <script src="../js/script-bartenderIndex.js"></script>
     <script src="../js/script-bartenderAux.js"></script>
+    <script src="../js/language.js"></script>
     <title>Bartender</title>
 </head>
 
@@ -24,14 +25,14 @@
 <div class="heading">
     <div class="container">
         <ul class="menu">
-            <li class="seeBeersNav"><a href="../html/mainUser.html">See the beers</a></li>
-            <li><a href="#">Account details</a> </li>
-            <li class="dropdown"><a class="dropdown-toggle" href="#">Log in</a>
+            <li class="seeBeersNav"><a id="languageClick"><span key="seeBeersLang" class="lang">See the beers</span></a></li>
+            <li><a href="#"><span key="accDetailsLang" class="lang">Account details</span></a> </li>
+            <li class="dropdown"><a class="dropdown-toggle" href="#"><span key="loginLang" class="lang">Log in</span></a>
             <ul class="dropdown-menu">
                 <li>
                     <form >
-                        Username:<br> <input type="text" name="username"><br>
-                        Password:<br><input type="password" name="Password">
+                        <span key="userNameLang" class="lang">Username:</span><br> <input type="text" name="username"><br>
+                        <span key="pwLang" class="lang">Password:</span><br><input type="password" name="Password">
                         <input type="submit" id="button-login" value="Log in">
                     </form>
                 </li>
@@ -51,29 +52,29 @@
     <div class="bFourBox" id = "fourBoxID">
         <a href="">
             <div class = "bFourBoxMini"  id ="startBeer">
-                 <div class ="bBoxesTextAlign"><p>Köpa bärka</p></div>
+                 <div class ="bBoxesTextAlign"><p key="buyBeerLink" class="lang"></p></div>
             </div>
         </a>
         <a href="../html/bartenderBeerInfo.html">
             <div class = "bFourBoxMini">
-                <div class="bBoxesTextAlign" id = "startInfo"><p>Info om bärka</p></div>
+                <div class="bBoxesTextAlign" id = "startInfo"><p key="infoLink" class="lang"></p></div>
             </div>
         </a>
 
         <a href="../html/bartenderCustomers.html">
             <div class = "bFourBoxMini" >
-                <div class="bBoxesTextAlign" id = "startCustomer"><p>Kunder</p></div>
+                <div class="bBoxesTextAlign" id = "startCustomer"><p key="customerLink" class="lang"></p></div>
             </div>
         </a>
 
         <a href="">
             <div class = "bFourBoxMini">
-                <div class="bBoxesTextAlign" id ="startTable" ><p>Bord</p></div>
+                <div class="bBoxesTextAlign" id ="startTable" ><p key="tableLink" class="lang"></p></div>
             </div>
         </a>
-    </div>
-</div>
+     </div>
+ </div>
 
-</body>
+ </body>
 
-</html>
+ </html>
