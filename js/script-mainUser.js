@@ -19,14 +19,11 @@ function allowDrop(ev) {
 var elements = [];
 function drag(element, ev) {
     var index = elements.indexOf(element);
-    console.log("first " + index);
     if(index == -1){
         elements.push(element);
         index = elements.length-1;
     }
     ev.dataTransfer.setData("index", index);
-    console.log("second " + index);
-    console.log("element " + elements);
 }
 
 /*
@@ -207,17 +204,28 @@ function redoButton(){
     }
 }
 
-
-
 $(document).ready(function() {
 
     $("#buyButton").click(function(){
         if(shoppingCartList.length != 0){
-
+            for(var i = 0; i<shoppingCartList.length; i++){
+                for(var j=0; j < shoppingCartList[i].quantity;j++){
+                    console.log(shoppingCartList[i].beer_id);
+                }
+                /* $.ajax({ type: "GET",
+                    url: "http://pub.jamaica-inn.net/fpdb/api.php?username="+sessionStorage.getItem('user')+
+                    "&password="+sessionStorage.getItem('pass')+"&action=purchases_append&=beer_id="+shoppingCartList[i].beer_id+"",
+                    async: true,
+                    datatype:'json',
+                    success : function(text)
+                    {
+                    }
+                });*/
+            }
         }else{
-            alert("TOM");
+            $("#noBeersSelected").fadeIn(0);
+            $("#noBeersSelected").delay(4616).fadeOut(1000);
         }
-
     });
 
     $("#search-criteria").keyup(function(){

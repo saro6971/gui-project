@@ -84,12 +84,14 @@ $(document).ready(function(){
     langArray['en']['purchaseAmount'] = 'Purchase amount: ';
 
 //mainUser English
+    langArray['en']['welcome'] = 'Welcome ';
     langArray['en']['buy'] = 'Buy';
     langArray['en']['clear'] = 'Clear';
     langArray['en']['undo'] = 'Undo';
     langArray['en']['redo'] = 'Redo';
     langArray['en']['mainText1'] = 'Drag beers here to shop!';
     langArray['en']['totalSum'] = 'Total sum: ';
+    langArray['en']['noBeersSelected'] ='Please select some beers in order to continue';
 }
 
 {
@@ -146,12 +148,14 @@ $(document).ready(function(){
     langArray['sw']['purchaseAmount'] = 'Antal varor: ';
 
 //mainUser Swedish
+    langArray['sw']['welcome'] = 'Välkommen ';
     langArray['sw']['buy'] = 'Köp';
     langArray['sw']['clear'] = 'Rensa';
     langArray['sw']['undo'] = 'Ångra';
     langArray['sw']['redo'] = 'Gör om';
     langArray['sw']['mainText1'] = 'Dra öl hit för att handla!';
     langArray['sw']['totalSum'] = 'Total summa: ';
+    langArray['sw']['noBeersSelected'] ='Vänligen välj öl du vill handla innan du gör ett köp';
 
 }
 

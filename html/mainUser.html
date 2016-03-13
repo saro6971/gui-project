@@ -78,10 +78,11 @@
 <div id="shoppingCart" ondrop="drop(this,event)" ondragover="allowDrop(event)">
 <span key="mainText1" class="lang">Drag beers here to shop!</span>
 </div>
-<button id="buyButton" onclick="buyButton()"><span key="buy" class="lang">Buy</span></button>
+<button id="buyButton" ><span key="buy" class="lang">Buy</span></button>
 <button id="clearButton" onclick="clearButton()"><span key="clear" class="lang">Clear</span> </button>
 <button id="undoButton" onclick="undoButton()"><span key="undo" class="lang">Undo</span></button>
 <button id="redoButton" onclick="redoButton()"><span key="redo" class="lang">Redo</span></button>
+    <div class="alert alert-danger alert-dismissable" style="display: none" id="noBeersSelected"><span key="noBeersSelected" class="lang"> Please select some beers in order to continue</span></div>
 </div>
 </body>
 </html>

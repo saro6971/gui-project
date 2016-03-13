@@ -3,14 +3,15 @@
  */
 
 var main = function(){
-
+    var lang = sessionStorage.getItem("sessionLanguage");
     var firstName = sessionStorage.getItem('firstname');
     var lastName = sessionStorage.getItem('lastname');
     var userId = sessionStorage.getItem('userid');
     var asset = sessionStorage.getItem('assets');
-
-    var printed ="<span>Hello "+sessionStorage.getItem('firstname'); +"</span>"
-    //document.getElementById("showName").innerHTML = printed;
+    if(firstName != null){
+        var printed ="<span key='welcome' class='lang'> "+ langArray[lang]['welcome'] +"</span>"+sessionStorage.getItem('firstname'); +""
+        document.getElementById("showName").innerHTML = printed;
+    }
 
 
 
@@ -23,8 +24,11 @@ var main = function(){
 
     $('#button-login').click(function(){
         var user = $("[name=username]").val();
+        sessionStorage.setItem('user',user);
         var pass = $("[name=password]").val();
+        sessionStorage.setItem('pass',pass);
         var response = '';
+        var lang = sessionStorage.getItem("sessionLanguage");
         $.ajax({ type: "GET",
             url: "http://pub.jamaica-inn.net/fpdb/api.php?username="+user+"&password="+pass+"&action=iou_get",
             async: true,
@@ -37,7 +41,7 @@ var main = function(){
                     sessionStorage.setItem('firstname', response.payload[0]["first_name"]);
                     sessionStorage.setItem('lastname', response.payload[0]["last_name"]);
                     sessionStorage.setItem('assets', response.payload[0]["assets"]);
-                    var printed ="<span>Hello "+sessionStorage.getItem('firstname'); +"</span>"
+                    var printed ="<span key='welcome' class='lang'>"+ langArray[lang]['welcome'] +sessionStorage.getItem('firstname'); +"</span>"
                     document.getElementById("showName").innerHTML = printed;
 
                     $('.dropdown-menu').toggle();
