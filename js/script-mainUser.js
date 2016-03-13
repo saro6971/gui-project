@@ -131,6 +131,7 @@ function removeFromCart(from, obj){
 
 
 function updateView(shoppingCartList){
+    var lang = sessionStorage.getItem("sessionLanguage");
     var buyingBeer ="<ul class='shopList'>";
     for(var item in shoppingCartList){
         buyingBeer += "<li class='boughtBeer' id=" +'bought'+ shoppingCartList[item].beer_id +" q="+shoppingCartList[item].quantity+" draggable='false' ><span class='shopName'><b>";
@@ -142,7 +143,7 @@ function updateView(shoppingCartList){
                                 "<button class='addButton' id=" +'add' + shoppingCartList[item].beer_id +" type='button' onclick=\"addMain('button',this)\" ><b>+</b></button>";
       }
     var sum = totalSum();
-    buyingBeer +="</li></ul><span class='totalSum'>Total sum: "+ sum +" SEK</span>"
+    buyingBeer +="</li></ul><span class='totalSum'><span key='totalSum' class='lang'>" + langArray[lang]['totalSum'] +"</span>"+ sum +" SEK</span>"
     document.getElementById("shoppingCart").innerHTML = buyingBeer;
 }
 
@@ -242,6 +243,7 @@ function loadItems() {
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             var beers = JSON.parse(xhttp.responseText).payload;
+            var lang = sessionStorage.getItem("sessionLanguage");
             var i;
             var beerList = ("<div ><ul id='beerListId'>");
             for (i=0; i < beers.length; i++){
@@ -253,8 +255,7 @@ function loadItems() {
                     + " name=\""+beers[i]['namn'] +" "+ beers[i]['namn2'] + "\""
                     + " class='beerItem' draggable='true' ondragstart='drag(this,event)' ><span class='shopName'><b>"
                     + beers[i]["namn"] +" "+beers[i]["namn2"]+
-                    "</b></span><span class='price'>  "   +
-                    "  Price: "
+                    "</b></span><span class='price'><span key='price' class='lang'>"   + langArray[lang]['price'] + "</span> "
                     + beers[i]["pub_price"] +
                     " SEK </span></li>" );
                 }
@@ -269,4 +270,4 @@ function loadItems() {
 var shoppingCartList = [];
 var undo = [];
 var redo = [];
-loadItems();
+

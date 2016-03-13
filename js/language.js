@@ -82,6 +82,14 @@ $(document).ready(function(){
     langArray['en']['inStock'] = 'Current amount in stock: ';
     langArray['en']['amountOrder'] = 'Amount order: ';
     langArray['en']['purchaseAmount'] = 'Purchase amount: ';
+
+//mainUser English
+    langArray['en']['buy'] = 'Buy';
+    langArray['en']['clear'] = 'Clear';
+    langArray['en']['undo'] = 'Undo';
+    langArray['en']['redo'] = 'Redo';
+    langArray['en']['mainText1'] = 'Drag beers here to shop!';
+    langArray['en']['totalSum'] = 'Total sum: ';
 }
 
 {
@@ -136,6 +144,15 @@ $(document).ready(function(){
     langArray['sw']['inStock'] = 'Antal i lager: ';
     langArray['sw']['amountOrder'] = 'Antal att beställa: ';
     langArray['sw']['purchaseAmount'] = 'Antal varor: ';
+
+//mainUser Swedish
+    langArray['sw']['buy'] = 'Köp';
+    langArray['sw']['clear'] = 'Rensa';
+    langArray['sw']['undo'] = 'Ångra';
+    langArray['sw']['redo'] = 'Gör om';
+    langArray['sw']['mainText1'] = 'Dra öl hit för att handla!';
+    langArray['sw']['totalSum'] = 'Total summa: ';
+
 }
 
 

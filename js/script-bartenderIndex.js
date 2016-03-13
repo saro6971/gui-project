@@ -36,7 +36,7 @@ function loadNotifications() {
                     beerList += ("<li id ="+ beers[i]["beer_id"] + ">" + beers[i]["namn"]);
                     beerList += ("<span key='indexText1' class='lang'> " + langArray[language]['indexText1'] + " </span> <b>" + beers[i]["count"] + " </b>");
                     beerList += ("<span key='indexText2' class='lang'>" + langArray[language]['indexText2'] + "</span>");
-                    beerList += ("<a onClick='orderBeerNotification(" + beers[i]["beer_id"] + ")'> <b key='orderMoreIndex' class='lang'>");
+                    beerList += ("<a onClick='orderBeerNotification(" + beers[i]["beer_id"] + ")'> <b key='orderIndex' class='lang'>");
                     beerList += (langArray[language]['orderIndex'] +"</b></a><a onClick='removeElementById(" + beers[i]["beer_id"]);
                     beerList += (")' id='removeIndexText' ><span key='removeIndex' class='lang'> " + langArray[language]['removeIndex'] + "</span></a></li>" );
                 }
@@ -47,10 +47,3 @@ function loadNotifications() {
     };
     xhttp.send();
 }
-
-/*
-#30 var beerList = ("<div ><ul id = 'ulList'><li onClick='reloadNotification()'><b id='update'>Uppdatera</b></li>");
-#34 beerList += ("<span id='indexText1'>är snart slut. Finns just nu </span> <b>" + beers[i]["count"] + "</b> i lager.");
-#35 beerList += ("<a onClick='orderBeerNotification(" + beers[i]["beer_id"] + ")'> <b><u>Beställ mer.</u></b></a>");
-#36 beerList += ("<a onClick='removeElementById(" + beers[i]["beer_id"] + ")'><span></span> Ta bort notis</a></li>" );
- */
