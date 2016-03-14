@@ -24,6 +24,15 @@ function findInfo(id){
     }
 }
 
+function findInfoBeer2(id){
+    for(var item in beerItemList2){
+        if(id == beerItemList2[item].id){
+            return beerItemList2[item];
+        }
+    }
+
+}
+
 function closeDiv(){
     var myElem = document.getElementById('temp');
     if (myElem === null){
@@ -37,3 +46,8 @@ function closeDiv(){
     }
 }
 
+function loadBeerAll(){
+
+
+
+}

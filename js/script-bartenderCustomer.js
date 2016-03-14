@@ -47,13 +47,16 @@ function loadCustomerList(){
                     fName: customer[i]["first_name"],
                     lName: customer[i]["last_name"],
                     username: customer[i]["username"],
+                    email: 'dummy@mail.com',
+                    phone: '+46709456671'
                 };
 
                 var language = sessionStorage.getItem("sessionLanguage");
                 customerTempList += ("<li class='customerInfoElement' id='" + i +"'>");
-                customerTempList += ("<p><span key='name' class='lang'>" + langArray[language]['name'] + "</span>" + customer[i]["first_name"] + " " + customer[i]["last_name"]);
+                customerTempList += ("<p><span key='name' class='lang'>" + langArray[language]['name']);
+                customerTempList += ("</span><span id='customerfName'>" + customer[i]["first_name"] + "</span> <span id='customerlName'>" + customer[i]["last_name"] + "</span>");
                 customerTempList += ("<button onclick='editCustomer(" + i + ")' key='edit' class='lang'>" + langArray[language]['edit'] + "</button></p>");
-                customerTempList += ("<p class='username'><span key='user' class='lang'>" + langArray[language]['user'] + "</span>" + customer[i]["username"]);
+                customerTempList += ("<p class='username'><span key='user' class='lang'>" + langArray[language]['user'] + "</span> <span id='custUsername'>" + customer[i]["username"] + "</span>");
                 customerTempList += ("<button onclick='viewOrders(" + i + ")'><span key='orders' class='lang'>" + langArray[language]['orders'] + "</span></button></p></li>");
 
 
@@ -94,7 +97,7 @@ function viewOrders(id){
                     leftBox += ("<ul><li>" + orderTempList[i]["namn"] + orderTempList[i]["namn2"] + "</li>");
                     leftBox += ("<li><span key='price' class='lang'>" + langArray[language]['price'] + "</span>" + orderTempList[i]["price"] + "</li>");
                     leftBox += ("<li> <span key='timestamp' class='lang'>" + langArray[language]['timestamp'] + "</span>" + orderTempList[i]["timestamp"] + "</li>")
-                    leftBox += ("<li> <span key='transId' class='lang'>" + langArray[transId]['cancel'] + "</span>" + orderTempList[i]["transaction_id"] + "</li></ul>");
+                    leftBox += ("<li> <span key='transId' class='lang'>" + langArray[language]['transactionId'] + "</span>" + orderTempList[i]["transaction_id"] + "</li></ul>");
                 }
             }
 
@@ -163,10 +166,10 @@ function editCustomer(id){
     var elements = ("<button id='lightButton' onclick='closeDiv()' key='cancel' class='lang'>" + langArray[language]['cancel'] + "</button><div id ='temp'>");
     elements += ("<ul> <li><span key='fName' class='lang'>" + langArray[language]['fName'] + "</span><input type='text' id='customerFName' value='" + customerList[id].fName + "'></li>");
     elements += ("<li><span key='lName' class='lang'>" + langArray[language]['lName'] + "</span><input type='text' id='customerLName' value='" +  customerList[id].lName + "'></li>");
-    elements += ("</li><li><span key='user' class='lang'>" + langArray[language]['user'] + "</span><input type='text' id='customerUsername' value='" +  customerList[id].username + "' readonly></li>");
-    elements += ("<li><span key='email' class='lang'>" + langArray[language]['email'] + "</span><input type='text' id='customerEmail' value=''></li>");
-    elements += ("<li><span key='phone' class='lang'>" + langArray[language]['phone'] + "</span><input type='text' id='customerTele' value=''></li></ul>");
-    elements += ("<button onclick='confirmEditCustomer(" +  customerList[id].id +  ")' key='confirm' class='lang'>Confirm Edit</button></form></div>");
+    elements += ("</li><li><span key='user' class='lang'>" + langArray[language]['user'] + "</span><input type='text' id='customerUsername' value='" +  customerList[id].username + "'></li>");
+    elements += ("<li><span key='email' class='lang'>" + langArray[language]['email'] + "</span><input type='text' id='customerEmail' value='" + customerList[id].email + "'></li>");
+    elements += ("<li><span key='phone' class='lang'>" + langArray[language]['phone'] + "</span><input type='text' id='customerTele' value='" + customerList[id].phone + "'></li>");
+    elements += ("<button onclick='confirmEditCustomer(" +  id +  ")' key='confirm' class='lang'>Confirm Edit</button></form></div>");
 
     document.getElementById("lightEdit").innerHTML = elements;
     document.getElementById('lightEdit').style.display='block';document.getElementById('fadeEdit').style.display='block';
@@ -174,18 +177,16 @@ function editCustomer(id){
 }
 
 function confirmEditCustomer(id){
-    customer = findCustomer(id);
+    customerList[id].fName =  document.getElementById("customerFName").value;
+    customerList[id].lName = document.getElementById("customerLName").value;
+    customerList[id].username = document.getElementById("customerUsername").value;
+    customerList[id].email = document.getElementById("customerEmail").value;
+    customerList[id].phone = document.getElementById("customerTele").value;
 
-    /*
-    var tempUrl = ("http://pub.jamaica-inn.net/fpdb/api.php?username=jorass&password=jorass&action=user_edit&");
-    tempUrl += ("new_username=" + customer.username + new_password);
-    tempUrl += (id + "&amount=" + amount + "&price=" + price)
-
-    */
-    //RELOAD ALL INFO, GLÖM EJ NOLLSTÄLLA CUSTOMER LIST
-
-    alert("TBI");
-
+    $("#customerfName").text(customerList[id].fName);
+    $("#customerlName").text(customerList[id].lName);
+    $("#custUsername").text(customerList[id].username);
+    closeDiv();
 }
 
 $(document).ready(function() {

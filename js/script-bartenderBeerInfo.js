@@ -11,9 +11,10 @@ function loadBeerInfo() {
                 if (beers[i]["namn"] != ""){
                     beerList += ("<li class='beerInfoElement' id='" + beers[i]["namn"] +"'><p>" + beers[i]["namn"] + " " + beers[i]["namn2"]);
                     beerList += ("<button onclick='editBeer(" + beers[i]["beer_id"] + ")' key='edit' class='lang'>" + langArray[language]['edit'] + "</button></p>");
-                    beerList += ("<p class='price'><span key='amount' class='lang'>" + langArray[language]['amount'] + "</span> " + beers[i]["count"] + " - ");
-                    beerList += ("<span key='price' class='lang'>" + langArray[language]['price'] + "</span>" +  beers[i]["price"]);
-                    beerList += ("<button onclick='orderBeerDiv(" + beers[i]["beer_id"] + ")' key='order' class='lang'>" + langArray[language]['order'] + "</button></p></li>");
+                    beerList += ("<p class='price'><span key='amount' class='lang'>" + langArray[language]['amount'])
+                    beerList += ("</span><span id='amount" + beers[i]["beer_id"] +"'>" + beers[i]["count"] + "</span> - ");
+                    beerList += ("<span key='price' class='lang'>" + langArray[language]['price'] + "</span><span id='price" + beers[i]["beer_id"] +  "'>" +  beers[i]["price"]);
+                    beerList += ("</span><button onclick='orderBeerDiv(" + beers[i]["beer_id"] + ")' key='order' class='lang'>" + langArray[language]['order'] + "</button></p></li>");
 
                     var beerItem = {
                         name1: beers[i]["namn"],
@@ -31,8 +32,7 @@ function loadBeerInfo() {
     };
     xhttp.send();
 }
-//var language = sessionStorage.getItem("sessionLanguage");
-//" + langArray[language]['cancel'] + "
+
 function editBeer(id){
     var language = sessionStorage.getItem("sessionLanguage");
     var beer = findInfo(id);
@@ -51,22 +51,13 @@ function editBeer(id){
 function applyBeerEdit(id){
      var amount = document.getElementById("beerInfoInputAmount").value;
      var price = document.getElementById("beerInfoInputPrice").value;
-
-     var tempUrl = ("http://pub.jamaica-inn.net/fpdb/api.php?username=jorass&password=jorass&action=inventory_append&beer_id=");
-    tempUrl += (id + "&amount=" + amount + "&price=" + price)
-
-
-     $.ajax({
-         type: 'POST',
-         url: tempUrl,
-         async: false,
-         success: function () {
-             closeDiv();
-             removeElementById("beerInfoRemove");
-             loadBeerInfo();
-         }
-     });
-
+    if(!isNaN(price) && !isNaN(amount)){
+        editElements(id,price,amount);
+        closeDiv();
+    }
+    else{
+        alert("Wrong input");
+    }
 }
 
 function orderBeerDiv(id){
@@ -96,7 +87,7 @@ function orderBeer(id) {
             amount: amount
         }
 
-        orderList.push(orderObject)
+        orderList.push(orderObject);
 
         $( "#orderUl" ).append(orders);
         closeDiv();
@@ -108,10 +99,21 @@ function orderBeer(id) {
 
 function confirmOrder(){
     if(orderList.length == 0){
-        alert("Empty")
+        //alert("Empty")
 
     }
     else{
+        for(var i = 0; i < orderList.length;i++){
+            var id = orderList[i].id;
+            var beer = findInfo(id);
+            var newAmount = parseInt(beer.amount) + parseInt(orderList[i].amount);
+            beer.amount = newAmount;
+
+            document.getElementById("amount" + id).innerHTML = (newAmount).toString();
+
+        }
+
+
         orderList = [];
         $( ".orderList" ).remove();
     }
@@ -128,8 +130,17 @@ function removeOrder(id){
 
 }
 
-$(document).ready(function() {
+function editElements(id,price,amount){
+    var beer = findInfo(id);
 
+    beer.price = price;
+    document.getElementById("price" + id).innerHTML = price;
+
+    beer.amount = amount;
+    document.getElementById("amount" + id).innerHTML = amount;
+}
+
+$(document).ready(function() {
     $("#searchBarName").keyup(function(){
 
         var g = $(this).val().toLowerCase();
@@ -139,7 +150,8 @@ $(document).ready(function() {
             $(this).closest('.beerInfoElement')[ s.indexOf(g) !== -1 ? 'show' : 'hide' ]();
         });
     });
-});
 
+
+});
 var beerItemList = [];
 var orderList = [];

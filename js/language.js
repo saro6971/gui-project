@@ -75,7 +75,7 @@ $(document).ready(function(){
     langArray['en']['phone'] = 'Phone number: ';
     langArray['en']['payments'] = 'Payments';
     langArray['en']['funds'] = 'Add funds';
-    langArray['en']['transId'] = 'Transaction ID: ';
+    langArray['en']['transactionId'] = 'Transaction ID: ';
 
 //bartenderBeerInfo English
     langArray['en']['confirmOrder'] = 'Confirm Order';
@@ -138,7 +138,7 @@ $(document).ready(function(){
     langArray['sw']['phone'] = 'Telefonnummer: ';
     langArray['sw']['payments'] = 'Betalningar';
     langArray['sw']['funds'] = 'Lägg till betalning';
-    langArray['sw']['transId'] = 'Transaktionsid: ';
+    langArray['sw']['transactionId'] = 'Transaktionsid: ';
 
 
 //bartenderBeerInfo Swedish
