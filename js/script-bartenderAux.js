@@ -1,6 +1,7 @@
 
 function logOutMe(){
-    window.alert("Du kan föfan inte logga ut");
+    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('pass');
 }
 
 function findCustomer(id){
@@ -46,8 +47,29 @@ function closeDiv(){
     }
 }
 
-function loadBeerAll(){
 
+function loadUsername(){
+    document.getElementById("userHeader").innerHTML =  sessionStorage.getItem("user");
 
+}
+function changeTheme(){
+    var theme = sessionStorage.getItem('themeCounter');
+    if(theme == null){
+        theme = 1;
+    }
+    else{
+        theme = parseInt(theme)+1;
+    }
+    theme = theme %2;
+    if(theme == 0){
+        sessionStorage.setItem('themeCounter',theme);
+        alert("Theme1 inc");
+        //LÄGG IN KOD FÖR ÄNDRA TEMA1 HÄR. TA SEN BORT ALERT
+    }
+    else {
+        sessionStorage.setItem('themeCounter',theme);
+        alert("Theme2 inc");
+        //LÄGG IN KOD FÖR ÄNDRA TEMA2 HÄR. TA SEN BORT ALERT
+    }
 
 }

@@ -19,6 +19,12 @@
 </head>
 
 <body>
+<form action="" id="search-form">
+    <fieldset>
+        <a id="languageClick"><img class="langPic" src="../swedish_british_flags-2-1.jpg" height="50" width="100" ></a>
+        <button class="themeButton" onclick="changeTheme()"><span key="theme" class="lang"></span></button>
+    </fieldset>
+</form>
 <h1 class="headers"> The Flying Dutchman</h1>
 <div class="heading">
     <div class="container">
@@ -27,6 +33,9 @@
             <li class="seeBeersNav"><a href="../html/mainUser.html"><span key="seeBeersLang" class="lang">See the beers</span></a></li>
             <li><a href="#"><span key="accDetailsLang" class="lang">Account details</span></a> </li>
             <li class="dropdown"><a class="dropdown-toggle" href="#"><span key="loginLang" class="lang">Log in</span></a>
+            <li><a href="#"><span key="user" class="lang">User: </span><span id="userHeader"><script>loadUsername();</script></span></a> </li>
+            <li class="dropdown"><a href="../html/mainUser.html" onclick="logOutMe()"><span key="loginOut" class="lang">Log out</span></a>
+
                 <ul class="dropdown-menu">
                     <li>
                         <form >
@@ -40,11 +49,7 @@
         </ul>
     </div>
 </div>
-<form action="" id="search-form">
-    <fieldset>
-        <a id="languageClick"><img class="langPic" src="../swedish_british_flags-2-1.jpg" height="50" width="100" ></a>
-    </fieldset>
-</form>
+
 
 <div class ="wrapper" id="wrapperBox">
         <div class="infoHeader">
