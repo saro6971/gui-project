@@ -28,6 +28,13 @@ a:visited, a:link {
     align:left;
 }
 
+.themeButton {
+    font-size: 15px;
+    margin: 1% 1% 0 0;
+    float:right;
+    border-radius: 8px;
+}
+
 .bNotifications ul {
     list-style-type: none;
     margin: 0;

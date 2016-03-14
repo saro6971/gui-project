@@ -27,7 +27,12 @@ body{
     background-color: transparent;
 }
 
-
+.themeButton {
+    font-size: 15px;
+    margin: 1% 1% 0 0;
+    float:right;
+    border-radius: 8px;
+}
 /***********************LIST OF BEERS**********************************/
 
 /*.priceId{

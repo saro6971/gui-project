@@ -54,9 +54,9 @@ function loadCustomerList(){
                 var language = sessionStorage.getItem("sessionLanguage");
                 customerTempList += ("<li class='customerInfoElement' id='" + i +"'>");
                 customerTempList += ("<p><span key='name' class='lang'>" + langArray[language]['name']);
-                customerTempList += ("</span><span id='customerfName'>" + customer[i]["first_name"] + "</span> <span id='customerlName'>" + customer[i]["last_name"] + "</span>");
+                customerTempList += ("</span><span id='customerfName" + i + "'>" + customer[i]["first_name"] + "</span> <span id='customerlName" + i + "'>" + customer[i]["last_name"] + "</span>");
                 customerTempList += ("<button onclick='editCustomer(" + i + ")' key='edit' class='lang'>" + langArray[language]['edit'] + "</button></p>");
-                customerTempList += ("<p class='username'><span key='user' class='lang'>" + langArray[language]['user'] + "</span> <span id='custUsername'>" + customer[i]["username"] + "</span>");
+                customerTempList += ("<p class='username'><span key='user' class='lang'>" + langArray[language]['user'] + "</span> <span id='custUsername" + i + "'>" + customer[i]["username"] + "</span>");
                 customerTempList += ("<button onclick='viewOrders(" + i + ")'><span key='orders' class='lang'>" + langArray[language]['orders'] + "</span></button></p></li>");
 
 
@@ -91,10 +91,10 @@ function viewOrders(id){
             var i;
             var elements = ("<button id='lightButton' onclick='closeDiv()' key='cancel' class='lang'>" + langArray[language]['cancel'] + "</button><div id ='temp'>");
             var leftBox = ("<div class ='leftBoxOrders'><p key='orders' class='lang'>" + langArray[language]['orders'] + "</p>");
-            var rightBox = ("<div class ='rightBoxOrders'><p><span key='payments' class='lang'>" + langArray[language]['payments'] + "</span>(" + assets + ")</p>");
+            var rightBox = ("<div class ='rightBoxOrders'><p><span key='payments' class='lang'>" + langArray[language]['payments'] + "</span>(" + assets + " SEK)</p>");
             for (i = 0; i < orderTempList.length; i++) {
                 if (orderTempList[i]["username"] == customerList[id].username) {
-                    leftBox += ("<ul><li>" + orderTempList[i]["namn"] + orderTempList[i]["namn2"] + "</li>");
+                    leftBox += ("<ul><li>" + orderTempList[i]["namn"] + " " + orderTempList[i]["namn2"] + "</li>");
                     leftBox += ("<li><span key='price' class='lang'>" + langArray[language]['price'] + "</span>" + orderTempList[i]["price"] + "</li>");
                     leftBox += ("<li> <span key='timestamp' class='lang'>" + langArray[language]['timestamp'] + "</span>" + orderTempList[i]["timestamp"] + "</li>")
                     leftBox += ("<li> <span key='transId' class='lang'>" + langArray[language]['transactionId'] + "</span>" + orderTempList[i]["transaction_id"] + "</li></ul>");
@@ -123,7 +123,7 @@ function viewOrders(id){
 }
 function addFunds(id){
     var amount = document.getElementById("inputAmount").value;
-    var tempUrl = ("http://pub.jamaica-inn.net/fpdb/api.php?username=hirchr&password=hirchr&action=payments_append&user_id=");
+    var tempUrl = ("http://pub.jamaica-inn.net/fpdb/api.php?username=" + sessionStorage.getItem('user') +"&password=" + sessionStorage.getItem('user') +"&action=payments_append&user_id=");
 
     if(!isNaN(amount)){
         $.ajax({
@@ -161,7 +161,6 @@ function addFunds(id){
 
 function editCustomer(id){
     var language = sessionStorage.getItem("sessionLanguage");
-    //langArray
 
     var elements = ("<button id='lightButton' onclick='closeDiv()' key='cancel' class='lang'>" + langArray[language]['cancel'] + "</button><div id ='temp'>");
     elements += ("<ul> <li><span key='fName' class='lang'>" + langArray[language]['fName'] + "</span><input type='text' id='customerFName' value='" + customerList[id].fName + "'></li>");
@@ -183,9 +182,9 @@ function confirmEditCustomer(id){
     customerList[id].email = document.getElementById("customerEmail").value;
     customerList[id].phone = document.getElementById("customerTele").value;
 
-    $("#customerfName").text(customerList[id].fName);
-    $("#customerlName").text(customerList[id].lName);
-    $("#custUsername").text(customerList[id].username);
+    $("#customerfName" + id).text(customerList[id].fName);
+    $("#customerlName" + id).text(customerList[id].lName);
+    $("#custUsername" + id).text(customerList[id].username);
     closeDiv();
 }
 
