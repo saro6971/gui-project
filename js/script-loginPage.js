@@ -22,17 +22,18 @@ var main = function(){
 
 
 
-    $('#button-login').click(function(){
+    $('#button-login').click(function(event){
+        event.preventDefault();
         var user = $("[name=username]").val();
         sessionStorage.setItem('user',user);
         var pass = $("[name=password]").val();
         sessionStorage.setItem('pass',pass);
         var response = '';
         var lang = sessionStorage.getItem("sessionLanguage");
-        $.ajax({ type: "GET",
+
+        var request = $.ajax({ type: "GET",
             url: "http://pub.jamaica-inn.net/fpdb/api.php?username="+user+"&password="+pass+"&action=iou_get",
             async: true,
-            datatype:'json',
             success : function(text)
             {
                 response = text;
@@ -44,18 +45,23 @@ var main = function(){
                     var printed ="<span key='welcome' class='lang'>"+ langArray[lang]['welcome'] +sessionStorage.getItem('firstname'); +"</span>"
                     document.getElementById("showName").innerHTML = printed;
                     $('.dropdown-menu').toggle();
-                    console.log("KOMMER DU HIT ELLER");
-                    for(var i=0; i<adminArray.length; i++){
-                        if(user == adminArray[i]){
-                            window.location.replace("http://localhost:63342/gui-project/html/bartenderIndex.html");
-                        }
-                    }
                 }
                 else {
                     console.log("esa no working hombre");
                 }
+                console.log("esa no working hombre");
+            },
+            complete:function(){
+                for(var i=0; i<adminArray.length; i++){
+                    if(user == adminArray[i]){
+                        window.location.replace("../html/bartenderIndex.html");
+                        return;
+                    }
+                }
             }
         });
+
+
     });
 
     $('#button-cancel').click(function(){
