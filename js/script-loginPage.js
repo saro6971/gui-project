@@ -44,6 +44,7 @@ var main = function(){
                     var printed ="<span key='welcome' class='lang'>"+ langArray[lang]['welcome'] +sessionStorage.getItem('firstname'); +"</span>"
                     document.getElementById("showName").innerHTML = printed;
                     $('.dropdown-menu').toggle();
+                    console.log("KOMMER DU HIT ELLER");
                     for(var i=0; i<adminArray.length; i++){
                         if(user == adminArray[i]){
                             window.location.replace("http://localhost:63342/gui-project/html/bartenderIndex.html");

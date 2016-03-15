@@ -40,7 +40,7 @@ $(document).ready(function(){
     langArray['en']['loginLang'] = 'Log in';
     langArray['en']['accDetailsLang'] = 'Account details';
     langArray['en']['seeBeersLang'] = 'See the beers';
-    langArray['en']['logout'] = 'Log out';
+    langArray['en']['loginOut'] = 'Log out';
     langArray['en']['theme'] = 'Change Theme';
 
 
@@ -107,7 +107,7 @@ $(document).ready(function(){
     langArray['sw']['loginLang'] = 'Logga in';
     langArray['sw']['accDetailsLang'] = 'Kontoinställningar';
     langArray['sw']['seeBeersLang'] = 'Se ölen';
-    langArray['sw']['logout'] = 'Logga ut';
+    langArray['sw']['loginOut'] = 'Logga ut';
     langArray['sw']['theme'] = 'Ändra Tema';
 
 //general Swedish
