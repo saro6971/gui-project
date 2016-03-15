@@ -32,7 +32,7 @@
             <div id="showName" ></div>
             <li class="seeBeersNav"><a href="../html/mainUser.html"><span key="seeBeersLang" class="lang">See the beers</span></a></li>
             <li><a href="#"><span key="accDetailsLang" class="lang">Account details</span></a> </li>
-            <li class="dropdown"><a class="dropdown-toggle" href="#"><span key="loginLang" class="lang">Log in</span></a>
+            <li id="loginli" class="dropdown"><a class="dropdown-toggle" href="#"><span key="loginLang" class="lang">Log in</span></a>
                 <ul class="dropdown-menu">
                     <li>
                         <form >
@@ -44,7 +44,7 @@
                 </ul>
             </li>
             <li><a href="#"><span key="user" class="lang">User: </span><span id="userHeader"><script>loadUsername();</script></span></a> </li>
-            <li class="dropdown"><a href="../html/mainUser.html" onclick="logOutMe()"><span key="loginOut" class="lang">Log out</span></a>
+            <li id="logoutli" class="dropdown"><a href="../html/mainUser.html" onclick="logOutMe()"><span key="loginOut" class="lang">Log out</span></a>
         </ul>
     </div>
 </div>

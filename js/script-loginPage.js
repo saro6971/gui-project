@@ -47,9 +47,9 @@ var main = function(){
                     $('.dropdown-menu').toggle();
                 }
                 else {
-                    console.log("esa no working hombre");
+                    console.log("No such user exists");
                 }
-                console.log("esa no working hombre");
+
             },
             complete:function(){
                 for(var i=0; i<adminArray.length; i++){
@@ -67,6 +67,13 @@ var main = function(){
     $('#button-cancel').click(function(){
         $('.dropdown-menu').toggle();
     });
+
+    var userlog = sessionStorage.getItem('user');
+    if(userlog != null){
+        $('#loginli').hide();
+    }else {
+        $('#logoutli').hide();
+    }
 
 };
 
