@@ -253,23 +253,23 @@ $(document).ready(function() {
                 $("#noBeersSelected").delay(4616).fadeOut(1000);
             }
 
+            $.ajax({
+                type: "GET",
+                url: "http://pub.jamaica-inn.net/fpdb/api.php?username=" + sessionStorage.getItem('user') + "&password=" + sessionStorage.getItem('pass') + "&action=iou_get",
+                async: true,
+                success: function (data) {
+                    sessionStorage.setItem('assets', data.payload[0]["assets"]);
+
+                    var inserts = "<span key='assetsInfo'' class='lang'>" + langArray[sessionStorage.getItem('sessionLanguage')]['assetsInfo'] + "</span>";
+                    inserts += sessionStorage.getItem('assets');
+                    document.getElementById("assetsInfoLi").innerHTML = inserts;
+                }
+
+            });
         }else{
             $("#notLoggedIn").fadeIn(0);
             $("#notLoggedIn").delay(4500).fadeOut(1000);
         }
-        $.ajax({
-            type: "GET",
-            url: "http://pub.jamaica-inn.net/fpdb/api.php?username=" + sessionStorage.getItem('user') + "&password=" + sessionStorage.getItem('pass') + "&action=iou_get",
-            async: true,
-            success: function (data) {
-                sessionStorage.setItem('assets', data.payload[0]["assets"]);
-
-                var inserts = "<span key='assetsInfo'' class='lang'>" + langArray[sessionStorage.getItem('sessionLanguage')]['assetsInfo'] + "</span>";
-                inserts += sessionStorage.getItem('assets');
-                document.getElementById("assetsInfoLi").innerHTML = inserts;
-            }
-
-        });
     });
 
     $("#search-criteria").keyup(function(){

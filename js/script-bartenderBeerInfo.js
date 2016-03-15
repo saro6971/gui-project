@@ -65,7 +65,7 @@ function orderBeerDiv(id){
     var language = sessionStorage.getItem("sessionLanguage");
 
     var elements = ("<div id ='temp2'>");
-    elements += ("<ul> <li>" + beer.name1 + beer.nam2 + "</li><li>" + langArray[language]['inStock'] + beer.amount + "</li>");
+    elements += ("<ul> <li>" + beer.name1 + " " + beer.name2 + "</li><li>" + langArray[language]['inStock'] + beer.amount + "</li>");
     elements += ("<li>" + langArray[language]['amountOrder'] + "<input type='text' id='beerOrderDiv' value='0' ></li></ul>");
     elements += ("<button name='orderSubmit'onclick='orderBeer(" + beer.id +  " )'>" + langArray[language]['order'] + "</button><button onclick ='closeDiv()'>Cancel</button></div>");
 
