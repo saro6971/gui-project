@@ -231,7 +231,8 @@ $(document).ready(function() {
                     $.ajax({
                         type: "GET",
                         url: "http://pub.jamaica-inn.net/fpdb/api.php?username=" + sessionStorage.getItem('user') +
-                        "&password=" + sessionStorage.getItem('pass') + "&action=purchases_append&=beer_id=" + shoppingCartList[i].beer_id + "",
+                        "&password=" + sessionStorage.getItem('pass') + "&action=purchases_append&beer_id=" + shoppingCartList[i].beer_id,
+                        //http://pub.jamaica-inn.net/fpdb/api.php?username=gollan&password=gollan&action=purchases_append&=beer_id=157503
                         async: true,
                         datatype: 'json',
                         success: function (text) {
@@ -240,17 +241,35 @@ $(document).ready(function() {
                             $("#boughtSuccess").fadeIn(0);
                             $("#boughtSuccess").delay(4500).fadeOut(1000);
                             console.log("bought");
+
+
+
                         }
                     });
-                }
+                } //liatra
+
             } else {
                 $("#noBeersSelected").fadeIn(0);
                 $("#noBeersSelected").delay(4616).fadeOut(1000);
             }
+
         }else{
             $("#notLoggedIn").fadeIn(0);
             $("#notLoggedIn").delay(4500).fadeOut(1000);
         }
+        $.ajax({
+            type: "GET",
+            url: "http://pub.jamaica-inn.net/fpdb/api.php?username=" + sessionStorage.getItem('user') + "&password=" + sessionStorage.getItem('pass') + "&action=iou_get",
+            async: true,
+            success: function (data) {
+                sessionStorage.setItem('assets', data.payload[0]["assets"]);
+
+                var inserts = "<span key='assetsInfo'' class='lang'>" + langArray[sessionStorage.getItem('sessionLanguage')]['assetsInfo'] + "</span>";
+                inserts += sessionStorage.getItem('assets');
+                document.getElementById("assetsInfoLi").innerHTML = inserts;
+            }
+
+        });
     });
 
     $("#search-criteria").keyup(function(){
