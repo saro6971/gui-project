@@ -13,6 +13,12 @@ var main = function(){
         document.getElementById("showName").innerHTML = printed;
     }
 
+    if(asset !=null && document.getElementById('assetsInfoLi') != null){
+
+        var inserts = "<span key='assetsInfo'' class='lang'>"  + langArray[sessionStorage.getItem('sessionLanguage')]['assetsInfo'] + "</span>";
+        inserts += sessionStorage.getItem('assets');
+        document.getElementById("assetsInfoLi").innerHTML = inserts;
+    }
 
 
 
@@ -45,6 +51,10 @@ var main = function(){
                     var printed ="<span key='welcome' class='lang'>"+ langArray[lang]['welcome'] +sessionStorage.getItem('firstname'); +"</span>"
                     document.getElementById("showName").innerHTML = printed;
                     $('.dropdown-menu').toggle();
+
+                    var inserts = "<span key='assetsInfo'' class='lang'>"  + langArray[sessionStorage.getItem('sessionLanguage')]['assetsInfo'] + "</span>";
+                    inserts += sessionStorage.getItem('assets');
+                    document.getElementById("assetsInfoLi").innerHTML = inserts;
                 }
                 else {
                     console.log("No such user exists");

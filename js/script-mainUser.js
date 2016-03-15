@@ -26,6 +26,19 @@ function drag(element, ev) {
     ev.dataTransfer.setData("index", index);
 }
 
+function loadBartenderMenu (){
+    var user = sessionStorage.getItem('user');
+    for(var i=0; i<adminArray.length; i++){
+        if(user == adminArray[i]){
+            //SPRÅk
+            var link = ("<a href='../html/bartenderIndex.html'><span key='bartenderLink' class='lang'>" + langArray[sessionStorage.getItem('sessionLanguage')]['bartenderLink'] + "</span></a>");
+            document.getElementById("insertBartender").innerHTML = link;
+            return;
+        }
+    }
+}
+
+
 /*
  * Prevent the default of dropping an element(open as a link)
  * Get the dragged data(getData()) method,

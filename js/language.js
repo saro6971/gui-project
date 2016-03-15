@@ -38,10 +38,12 @@ $(document).ready(function(){
     langArray['en']['userNameLang'] = 'Username:';
     langArray['en']['pwLang'] = 'Password';
     langArray['en']['loginLang'] = 'Log in';
-    langArray['en']['accDetailsLang'] = 'Account details';
+    langArray['en']['assetsInfo'] = 'Assets: ';
     langArray['en']['seeBeersLang'] = 'See the beers';
     langArray['en']['loginOut'] = 'Log out';
     langArray['en']['theme'] = 'Change Theme';
+    langArray['en']['bartenderLink'] = 'Bartender Page';
+
 
 
 
@@ -105,10 +107,11 @@ $(document).ready(function(){
     langArray['sw']['userNameLang'] = 'Användarnamn:';
     langArray['sw']['pwLang'] = 'Lösenord';
     langArray['sw']['loginLang'] = 'Logga in';
-    langArray['sw']['accDetailsLang'] = 'Kontoinställningar';
+    langArray['sw']['assetsInfo'] = 'Tillgångar: ';
     langArray['sw']['seeBeersLang'] = 'Se ölen';
     langArray['sw']['loginOut'] = 'Logga ut';
     langArray['sw']['theme'] = 'Ändra Tema';
+    langArray['sw']['bartenderLink'] = 'Bartendersida';
 
 //general Swedish
     langArray['sw']['confirm'] = 'Bekräfta editering';
