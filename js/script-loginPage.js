@@ -60,7 +60,13 @@ var main = function(){
                 }
             }
         });
-
+        var userlog = sessionStorage.getItem('user');
+        if(userlog != null){
+            $('#logoutli').show();
+            $('#loginli').hide();
+        }else {
+            $('#logoutli').hide();
+        }
 
     });
 
