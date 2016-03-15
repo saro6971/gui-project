@@ -264,6 +264,24 @@ $(document).ready(function() {
 * xhttp.responsetext is a string that contains the response,  payload is a property that contains the information
 * */
 
+function loadMoreInfo(beer_id){
+    var alco;
+    var request = $.ajax({ type: "GET",
+        url: "http://pub.jamaica-inn.net/fpdb/api.php?username=jorass&password=jorass&action=beer_data_get&beer_id="+beer_id,
+        async: true,
+        success : function(text)
+        {
+            response = text;
+            alco = response.payload[0].alkoholhalt;
+            var fake= document.getElementById(beer_id).innerHTML;
+            var pro = fake.replace("</b>","<br>" +alco+"</b>");
+            document.getElementById(beer_id).innerHTML =pro;
+        }
+
+    });
+    //console.log("assadASDDASD");
+}
+
 function loadItems() {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET","http://pub.jamaica-inn.net/fpdb/api.php?username=jorass&password=jorass&action=inventory_get", true);
@@ -285,6 +303,7 @@ function loadItems() {
                     "</b></span><span class='price'><span key='price' class='lang'>"+ langArray[lang]['price'] + "</span> "
                     + beers[i]["pub_price"] +
                     " SEK </span></li>" );
+                    loadMoreInfo(beers[i]["beer_id"]);
                 }
             }
             beerList += ("</ul></div>")
