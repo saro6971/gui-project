@@ -2,6 +2,10 @@
 function logOutMe(){
     sessionStorage.removeItem('user');
     sessionStorage.removeItem('pass');
+    sessionStorage.removeItem('firstname');
+    sessionStorage.removeItem('lastname');
+    sessionStorage.removeItem('assets');
+    sessionStorage.removeItem('userid');
 }
 
 function findCustomer(id){
@@ -52,6 +56,7 @@ function loadUsername(){
     document.getElementById("userHeader").innerHTML =  sessionStorage.getItem("user");
 
 }
+
 function changeTheme(){
     var theme = sessionStorage.getItem('themeCounter');
     if(theme == null){
@@ -63,12 +68,15 @@ function changeTheme(){
     theme = theme %2;
     if(theme == 0){
         sessionStorage.setItem('themeCounter',theme);
-        alert("Theme1 inc");
-        //LÄGG IN KOD FÖR ÄNDRA TEMA1 HÄR. TA SEN BORT ALERT
+        console.log("Theme1 inc");
+        //$(".headers").css({"color":"#DE1B1B"});
+        $(".stylee").css({"background-color":"#F6F6F6"});
     }
     else {
         sessionStorage.setItem('themeCounter',theme);
-        alert("Theme2 inc");
+        console.log("Theme2 inc");
+        //$(".headers").css({"color":"#35CA41"});
+        $(".stylee").css({"background-color":"#CEF0EF"});
         //LÄGG IN KOD FÖR ÄNDRA TEMA2 HÄR. TA SEN BORT ALERT
     }
 

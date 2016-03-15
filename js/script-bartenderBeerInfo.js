@@ -155,3 +155,9 @@ $(document).ready(function() {
 });
 var beerItemList = [];
 var orderList = [];
+var theme = sessionStorage.getItem('themeCounter');
+if(theme ==1){
+    $(".stylee").css({"background-color":"#CEF0EF"});
+}else{
+    $(".stylee").css({"background-color":"#F6F6F6"});
+}

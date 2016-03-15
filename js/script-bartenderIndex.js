@@ -73,7 +73,11 @@ function reloadNotificationAux(id,item){
     }
 }
 var beerItemList2 = [];
-
+var theme = sessionStorage.getItem('themeCounter');
+if(theme ==1){
+    $(".stylee").css({"background-color":"#CEF0EF"});
+}else{
+    $(".stylee").css({"background-color":"#F6F6F6"})};
 
 
 

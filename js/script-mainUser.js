@@ -37,6 +37,7 @@ function drag(element, ev) {
 function drop(target, ev) {
     ev.preventDefault();
     var element = elements[event.dataTransfer.getData('index')];
+    console.log(elements);
     if(typeof element === "undefined"){ return;}
     var id = $(element).attr('id');
     // kolla vad det är för typ av sak du släpper
@@ -207,24 +208,35 @@ function redoButton(){
 $(document).ready(function() {
 
     $("#buyButton").click(function(){
-        if(shoppingCartList.length != 0){
-            for(var i = 0; i<shoppingCartList.length; i++){
-                for(var j=0; j < shoppingCartList[i].quantity;j++){
-                    console.log(shoppingCartList[i].beer_id);
-                }
-                /* $.ajax({ type: "GET",
-                    url: "http://pub.jamaica-inn.net/fpdb/api.php?username="+sessionStorage.getItem('user')+
-                    "&password="+sessionStorage.getItem('pass')+"&action=purchases_append&=beer_id="+shoppingCartList[i].beer_id+"",
-                    async: true,
-                    datatype:'json',
-                    success : function(text)
-                    {
+        var userlog = sessionStorage.getItem('user');
+        if(userlog != null) {
+            if (shoppingCartList.length != 0) {
+                for (var i = 0; i < shoppingCartList.length; i++) {
+                    for (var j = 0; j < shoppingCartList[i].quantity; j++) {
+                        console.log(shoppingCartList[i].beer_id);
                     }
-                });*/
+                    $.ajax({
+                        type: "GET",
+                        url: "http://pub.jamaica-inn.net/fpdb/api.php?username=" + sessionStorage.getItem('user') +
+                        "&password=" + sessionStorage.getItem('pass') + "&action=purchases_append&=beer_id=" + shoppingCartList[i].beer_id + "",
+                        async: true,
+                        datatype: 'json',
+                        success: function (text) {
+                            shoppingCartList=[];
+                            updateView(shoppingCartList);
+                            $("#boughtSuccess").fadeIn(0);
+                            $("#boughtSuccess").delay(4500).fadeOut(1000);
+                            console.log("bought");
+                        }
+                    });
+                }
+            } else {
+                $("#noBeersSelected").fadeIn(0);
+                $("#noBeersSelected").delay(4616).fadeOut(1000);
             }
         }else{
-            $("#noBeersSelected").fadeIn(0);
-            $("#noBeersSelected").delay(4616).fadeOut(1000);
+            $("#notLoggedIn").fadeIn(0);
+            $("#notLoggedIn").delay(4500).fadeOut(1000);
         }
     });
 
@@ -263,7 +275,7 @@ function loadItems() {
                     + " name=\""+beers[i]['namn'] +" "+ beers[i]['namn2'] + "\""
                     + " class='beerItem' draggable='true' ondragstart='drag(this,event)' ><span class='shopName'><b>"
                     + beers[i]["namn"] +" "+beers[i]["namn2"]+
-                    "</b></span><span class='price'><span key='price' class='lang'>"   + langArray[lang]['price'] + "</span> "
+                    "</b></span><span class='price'><span key='price' class='lang'>"+ langArray[lang]['price'] + "</span> "
                     + beers[i]["pub_price"] +
                     " SEK </span></li>" );
                 }
@@ -274,8 +286,14 @@ function loadItems() {
     };
     xhttp.send();
 }
+
+
 //initiate keeping track of shopping, undo, redo
 var shoppingCartList = [];
 var undo = [];
 var redo = [];
-
+var theme = sessionStorage.getItem('themeCounter');
+if(theme ==1){
+    $(".stylee").css({"background-color":"#CEF0EF"});
+}else{
+    $(".stylee").css({"background-color":"#F6F6F6"})};

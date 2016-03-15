@@ -96,6 +96,8 @@ $(document).ready(function(){
     langArray['en']['mainText1'] = 'Drag beers here to shop!';
     langArray['en']['totalSum'] = 'Total sum: ';
     langArray['en']['noBeersSelected'] ='Please select some beers in order to continue';
+    langArray['en']['boughtSuccess'] ='Your purchase has been made';
+    langArray['en']['notLoggedIn'] ='Please log in before making a purchase';
 }
 
 {
@@ -162,6 +164,8 @@ $(document).ready(function(){
     langArray['sw']['mainText1'] = 'Dra öl hit för att handla!';
     langArray['sw']['totalSum'] = 'Total summa: ';
     langArray['sw']['noBeersSelected'] ='Vänligen välj öl du vill handla innan du gör ett köp';
+    langArray['sw']['boughtSuccess'] ='Du har nu köpt din dryck';
+    langArray['sw']['notLoggedIn'] ='Var vänlig logga in före du betalar';
 
 }
 
