@@ -65,7 +65,11 @@ function drop(target, ev) {
     };
     addMain('drop',boughtBeer);
 }
-
+/**
+ * Depending on if the element is dropped or just added with the add button
+ * the information is set up in the same way so that the undo - redo functinality is easier controlled
+ * and the quantity for the beer chosen is updated +1
+ * */
 function addMain(from, obj){
     if(from ==='drop'){
         addCart(obj);
@@ -104,6 +108,10 @@ function addCart(boughtBeer){
     redo=[];
 }
 
+
+/**
+ * removes items from the cart depending on which element is selected.
+ * */
 function removeFromCart(from, obj){
     var boughtBeer;
     if(from ==='button'){
@@ -140,7 +148,9 @@ function removeFromCart(from, obj){
 }
 
 
-
+/**
+ * Updates the view of the shoppingcart.
+ * */
 function updateView(shoppingCartList){
     var lang = sessionStorage.getItem("sessionLanguage");
     var buyingBeer ="<ul class='shopList'>";
@@ -174,7 +184,9 @@ function clearButton(){
     undo =[];
     redo=[];
 }
-
+/**
+ *  Undo- functionality. If the action in the undo array was add an remove from cart action will occur.
+ * */
 function undoButton(){
     if (undo.length > 0) {
         var actionToUndo = undo.pop();
@@ -187,9 +199,7 @@ function undoButton(){
             console.log(JSON.stringify(undo.pop()));
 
         }else{
-            //if remove
-            //console.log("delete" + JSON.stringify(undo));
-            //actionToUndo.obj.quantity-=1;
+
             var redoBackup = redo;
             addMain('drop',actionToUndo.obj);
             redo = redoBackup;
@@ -198,6 +208,10 @@ function undoButton(){
         }
     }
 }
+
+/**
+ * Redos the latest action in the redo array
+ * */
 
 function redoButton(){
     if (redo.length > 0) {
@@ -219,7 +233,9 @@ function redoButton(){
 }
 
 $(document).ready(function() {
-
+/**
+ * The selected beer is bought when the buy button is pressed.
+ * */
     $("#buyButton").click(function(){
         var userlog = sessionStorage.getItem('user');
         if(userlog != null) {
@@ -241,12 +257,9 @@ $(document).ready(function() {
                             $("#boughtSuccess").fadeIn(0);
                             $("#boughtSuccess").delay(4500).fadeOut(1000);
                             console.log("bought");
-
-
-
                         }
                     });
-                } //liatra
+                }
 
             } else {
                 $("#noBeersSelected").fadeIn(0);
@@ -313,7 +326,9 @@ function loadMoreInfo(beer_id){
     });
     //console.log("assadASDDASD");
 }
-
+/**
+ * Loads the information of the beers to the site
+ * */
 function loadItems() {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET","http://pub.jamaica-inn.net/fpdb/api.php?username=jorass&password=jorass&action=inventory_get", true);

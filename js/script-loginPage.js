@@ -27,7 +27,14 @@ var main = function(){
     });
 
 
-
+/**
+ * When a user presses the login button an ajax request is made to the database which checks that
+ * the username and password provided bgy the user is actually correct. It saves the name and password in
+ * sessionstorage in order to save the information if the pages are changed. It also checks if the name and password provided
+ * is that of an admin account in, depending on if it is or isn't it decides the privileges that the user has once logged in.
+ * When a user is logged in he also recieves some information that he actually is logged in. In this case it shows the name and assets
+ * of the user.
+ * */
     $('#button-login').click(function(event){
         event.preventDefault();
         var user = $("[name=username]").val();
