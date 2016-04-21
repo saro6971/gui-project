@@ -1,4 +1,6 @@
-
+/**
+ * Clears all the sessionStorage for the user.
+ */
 function logOutMe(){
     sessionStorage.removeItem('user');
     sessionStorage.removeItem('pass');
@@ -37,7 +39,9 @@ function findInfoBeer2(id){
     }
 
 }
-
+/**
+ * Hides the div which is used by "edit button".
+ */
 function closeDiv(){
     var myElem = document.getElementById('temp');
     if (myElem === null){
@@ -56,6 +60,10 @@ function loadUsername(){
     document.getElementById("userHeader").innerHTML =  sessionStorage.getItem("user");
 
 }
+
+/**
+ * Changes the theme, depending on the sessionStorage themeCounter.
+ */
 
 function changeTheme(){
     var theme = sessionStorage.getItem('themeCounter');

@@ -5,6 +5,11 @@ langArray['sw'] = new Array();
 
 //All text that is going to be translated need to have class="lang", with the key e.g.:
 //<p class="lang" key=update></p> -> langArray[en/sw]['update'];
+
+/**
+ * Switches and sets the language depending on the current sessionLanguage.
+ */
+
 $(document).ready(function(){
     //Set language to English if none is set
     if(sessionStorage.getItem('sessionLanguage') == null){
@@ -32,7 +37,6 @@ $(document).ready(function(){
 
 });
 
-//<span key="seeBeersLang" class="lang">
 {
 //header English
     langArray['en']['userNameLang'] = 'Username:';

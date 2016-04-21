@@ -1,3 +1,7 @@
+/**
+ * Fetches all payments and stores is in 'paymentList', and inserts all payments on the webpage.
+ */
+
 function getPaymentsUser(){
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET","http://pub.jamaica-inn.net/fpdb/api.php?username=hirchr&password=hirchr&action=payments_get_all", true);
@@ -34,6 +38,10 @@ function getPaymentsUser(){
     };
     xhttp.send();
 }
+/**
+ * Fetches all users from the DB, stores them and presents all the customers on the webpage.
+ */
+
 function loadCustomerList(){
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET","http://pub.jamaica-inn.net/fpdb/api.php?username=ervtod&password=ervtod&action=iou_get_all", true);
@@ -68,6 +76,10 @@ function loadCustomerList(){
     };
     xhttp.send();
 }
+/**
+ * Takes the customer ID and fetches all the payments done by the user. Presents a new window with all the payments and purchases done by the user.
+ */
+
 function viewOrders(id){
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET","http://pub.jamaica-inn.net/fpdb/api.php?username=hirchr&password=hirchr&action=purchases_get_all", true);
@@ -121,6 +133,10 @@ function viewOrders(id){
     };
     xhttp.send();
 }
+
+/**
+ * Checks if it's an valid amount that the user has entered, and add funds to the user ID.
+ */
 function addFunds(id){
     var amount = document.getElementById("inputAmount").value;
     var tempUrl = ("http://pub.jamaica-inn.net/fpdb/api.php?username=" + sessionStorage.getItem('user') +"&password=" + sessionStorage.getItem('user') +"&action=payments_append&user_id=");
@@ -159,6 +175,9 @@ function addFunds(id){
     }
 }
 
+/**
+ * Returns a new window with all the customer info.
+ */
 function editCustomer(id){
     var language = sessionStorage.getItem("sessionLanguage");
 
@@ -175,6 +194,9 @@ function editCustomer(id){
 
 }
 
+/**
+ * Fetches and saves all the edited user information.
+ */
 function confirmEditCustomer(id){
     customerList[id].fName =  document.getElementById("customerFName").value;
     customerList[id].lName = document.getElementById("customerLName").value;
@@ -187,6 +209,10 @@ function confirmEditCustomer(id){
     $("#custUsername" + id).text(customerList[id].username);
     closeDiv();
 }
+/**
+ * A search function which hides all the customers which have either no username or name matching to the input.
+ * Updates on each keypress.
+ */
 
 $(document).ready(function() {
     $("#searchCustomer").keyup(function(){

@@ -1,3 +1,7 @@
+/**
+ * Loads all the beer from the DB, saves them in an array and a presents them onto the webpage.
+ */
+
 function loadBeerInfo() {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET","http://pub.jamaica-inn.net/fpdb/api.php?username=jorass&password=jorass&action=inventory_get", true);
@@ -33,6 +37,9 @@ function loadBeerInfo() {
     xhttp.send();
 }
 
+/**
+ * Presents a new window with all the beer information.
+ */
 function editBeer(id){
     var language = sessionStorage.getItem("sessionLanguage");
     var beer = findInfo(id);
@@ -48,6 +55,9 @@ function editBeer(id){
 
 }
 
+/**
+ * Checks, fetches the beer edit information and saves it.
+ */
 function applyBeerEdit(id){
      var amount = document.getElementById("beerInfoInputAmount").value;
      var price = document.getElementById("beerInfoInputPrice").value;
@@ -59,7 +69,9 @@ function applyBeerEdit(id){
         alert("Wrong input");
     }
 }
-
+/**
+ * A new window with all the information about the beer (id) which is editable.
+ */
 function orderBeerDiv(id){
     var beer = findInfo(id);
     var language = sessionStorage.getItem("sessionLanguage");
@@ -72,7 +84,9 @@ function orderBeerDiv(id){
     document.getElementById("lightOrder").innerHTML = elements;
     document.getElementById('lightOrder').style.display='block';document.getElementById('fadeOrder').style.display='block';
 }
-
+/**
+ * Checks for validation, fetches the beer amount information and appends it to a list which is presented to the user.
+ */
 function orderBeer(id) {
     var language = sessionStorage.getItem("sessionLanguage");
     var beer = findInfo(id);
@@ -96,6 +110,9 @@ function orderBeer(id) {
         window.alert("Order more")
     }
 }
+/**
+ * Takes all elements from the order list and orders them. Resets the orderlist.
+ */
 
 function confirmOrder(){
     if(orderList.length == 0){
@@ -118,6 +135,9 @@ function confirmOrder(){
         $( ".orderList" ).remove();
     }
 }
+/**
+ * Removes an specific beer order (id) from the orderlist.
+ */
 
 function removeOrder(id){
     for(var item in orderList){
@@ -129,6 +149,9 @@ function removeOrder(id){
     }
 
 }
+/**
+ * Saves the new price and amount for the specific beer (id).
+ */
 
 function editElements(id,price,amount){
     var beer = findInfo(id);
@@ -139,7 +162,10 @@ function editElements(id,price,amount){
     beer.amount = amount;
     document.getElementById("amount" + id).innerHTML = amount;
 }
-
+/**
+ * A search function which hides all the beer which have either no price or name matching to the input.
+ * Updates on each keypress.
+ */
 $(document).ready(function() {
     $("#searchBarName").keyup(function(){
 

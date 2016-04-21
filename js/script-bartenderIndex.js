@@ -1,4 +1,6 @@
-
+/**
+ * Uses an alert window to order beer from the notificationbar.
+ * */
 function orderBeerNotification(id ){
     var order = prompt("Please choose amount (10+)", "50");
 
@@ -16,13 +18,19 @@ function orderBeerNotification(id ){
         window.alert("Incorrect input");
     }
 }
+/**
+ * Removes all the elements in the notificationbar, and then insert them again from loadNotifications() again.
+ * */
 
 function reloadNotification(){
     document.getElementById("ulList").remove();
     loadNotifications();
 
 }
-
+/**
+ * Loads all items from the DB and stores it an array.
+ * Also inserts the items which have a beer count < 10 into the notification list and inserts it on the webpage.
+ * */
 function loadNotifications() {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET","http://pub.jamaica-inn.net/fpdb/api.php?username=jorass&password=jorass&action=inventory_get", true);
@@ -52,7 +60,6 @@ function loadNotifications() {
                         price: beers[i]["price"]
 
                     };
-                    //alert(temp.name1);
                     beerItemList2.push(temp);
 
                 }
@@ -63,7 +70,9 @@ function loadNotifications() {
     };
     xhttp.send();
 }
-
+/**
+ * Takes the id and item and checks the new amount. Either change to the correct amount in notificationbar, or removes the item from the bar.
+ */
 function reloadNotificationAux(id,item){
     if(item.amount < 20){
         document.getElementById("beer"+id).innerHTML = item.amount + " ";
@@ -72,8 +81,8 @@ function reloadNotificationAux(id,item){
         removeElementById(id);
     }
 }
-var beerItemList2 = [];
-var theme = sessionStorage.getItem('themeCounter');
+var beerItemList2 = []; //All beer items.
+var theme = sessionStorage.getItem('themeCounter'); //Stores the counter for changing theme
 if(theme ==1){
     $(".stylee").css({"background-color":"#CEF0EF"});
 }else{
